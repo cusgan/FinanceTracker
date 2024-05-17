@@ -22,7 +22,7 @@
             android:layout_height="38dp" />
 
         <ImageView
-            android:id="@+id/imageView6"
+            android:id="@+id/imgLogo"
             android:layout_width="337dp"
             android:layout_height="245dp"
             app:srcCompat="@drawable/logo_name" />
@@ -37,7 +37,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvLoginEmail"
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -48,7 +48,7 @@
                     android:textColorLink="@color/mustard_yellow" />
 
                 <EditText
-                    android:id="@+id/editTextTextEmailAddress6"
+                    android:id="@+id/txtLoginEmail"
                     android:layout_width="270dp"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
@@ -65,7 +65,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/tvLoginPass"
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -76,7 +76,7 @@
                     android:textColorLink="@color/mustard_yellow" />
 
                 <EditText
-                    android:id="@+id/editTextTextPassword2"
+                    android:id="@+id/txtLoginPass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
@@ -96,7 +96,7 @@
             android:layout_height="38dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnLogin"
             android:layout_width="284dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
@@ -104,7 +104,7 @@
             android:textColor="@color/deep_green" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnSignup"
             android:layout_width="285dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/emerald"
