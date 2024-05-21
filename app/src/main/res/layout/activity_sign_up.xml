@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/emerald"
+    android:background="@color/deep_green"
     tools:context=".SignUp">
 
     <LinearLayout
@@ -19,13 +19,31 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="38dp" />
+            android:layout_height="107dp" />
 
         <ImageView
             android:id="@+id/imgLogo"
-            android:layout_width="337dp"
-            android:layout_height="245dp"
-            app:srcCompat="@drawable/logo_name" />
+            android:layout_width="121dp"
+            android:layout_height="115dp"
+            app:srcCompat="@drawable/spendsmart_logo" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="29dp" />
+
+        <TextView
+            android:id="@+id/tvReg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/barlow_semibold"
+            android:gravity="center"
+            android:text="Sign up to SPEND SMART with us"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="29dp" />
 
         <TableLayout
             android:layout_width="wrap_content"
@@ -37,18 +55,20 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/tvFname"
+                    android:id="@+id/tvName"
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_bold"
                     android:gravity="center"
-                    android:text="Last Name"
+                    android:text="Name"
                     android:textColor="@color/white"
                     android:textColorHighlight="@color/vivid_yellow"
                     android:textColorHint="@color/white"
-                    android:textColorLink="@color/mustard_yellow" />
+                    android:textColorLink="@color/mustard_yellow"
+                    android:textSize="16sp" />
 
                 <EditText
-                    android:id="@+id/editTextText2"
+                    android:id="@+id/txtName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
@@ -66,44 +86,17 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/tvFname"
+                    android:id="@+id/tvName"
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="First Name"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="@color/vivid_yellow"
-                    android:textColorHint="@color/white"
-                    android:textColorLink="@color/mustard_yellow" />
-
-                <EditText
-                    android:id="@+id/editTextText2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
-                    android:ems="10"
-                    android:inputType="text"
-                    android:textColor="@color/white"
-                    android:textColorHighlight="@color/vivid_yellow"
-                    android:textColorHint="@color/white"
-                    android:textColorLink="@color/vivid_yellow" />
-
-            </TableRow>
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/tvFname"
-                    android:layout_width="93dp"
-                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_bold"
                     android:gravity="center"
                     android:text="Email"
                     android:textColor="@color/white"
                     android:textColorHighlight="@color/vivid_yellow"
                     android:textColorHint="@color/white"
-                    android:textColorLink="@color/mustard_yellow" />
+                    android:textColorLink="@color/mustard_yellow"
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/txtLoginEmail"
@@ -111,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/inter_medium"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/white"
                     android:textColorHighlight="@color/vivid_yellow"
@@ -126,12 +120,14 @@
                     android:id="@+id/tvLoginPass"
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/barlow_bold"
                     android:gravity="center"
                     android:text="Password"
                     android:textColor="@color/white"
                     android:textColorHighlight="@color/vivid_yellow"
                     android:textColorHint="@color/white"
-                    android:textColorLink="@color/mustard_yellow" />
+                    android:textColorLink="@color/mustard_yellow"
+                    android:textSize="16sp" />
 
                 <EditText
                     android:id="@+id/txtLoginPass"
@@ -139,6 +135,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="@font/inter_medium"
                     android:inputType="textPassword"
                     android:textColor="@color/white"
                     android:textColorHighlight="@color/vivid_yellow"
@@ -151,15 +148,18 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="38dp" />
+            android:layout_height="29dp" />
 
         <Button
             android:id="@+id/btnConfirmSignup"
             android:layout_width="284dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/vivid_yellow"
+            android:fontFamily="@font/inter_bold"
             android:text="Sign Up"
-            android:textColor="@color/emerald" />
+            android:textColor="@color/deep_green"
+            android:textSize="16sp"
+            app:cornerRadius="180dip" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,7 +18,7 @@
             android:name=".Statistics"
             android:exported="false" />
         <activity
-            android:name=".AddExpense"
+            android:name=".AddTransaction"
             android:exported="false" />
         <activity
             android:name=".DailySummary"
