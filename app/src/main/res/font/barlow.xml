@@ -3,13 +3,26 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/Barlow_Regular" />
+        android:font='@font/barlow_regular' />
     <font
         android:fontStyle="italic"
         android:fontWeight="400"
-        android:font="@font/Barlow_Italic" />
+        android:font="@font/barlow_italic" />
+    <font
+        android:fontStyle="bold"
+        android:fontWeight="400"
+        android:font="@font/barlow_bold" />
     <font
         android:fontStyle="black"
         android:fontWeight="400"
-        android:font="@font/Barlow_Black" />
+        android:font="@font/barlow_black" />
+    <font
+        android:fontStyle="black_italic"
+        android:fontWeight="400"
+        android:font="@font/barlow_blackitalic" />
+    <font
+        android:fontStyle="bold_italic"
+        android:fontWeight="400"
+        android:font="@font/barlow_bolditalic" />
+
 </font-family>
