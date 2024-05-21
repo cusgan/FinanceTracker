@@ -27,6 +27,16 @@
             android:layout_height="245dp"
             app:srcCompat="@drawable/logo_name" />
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="SpendSmart"
+            android:textColor="@color/white"
+            android:textSize="48sp" />
+
         <TableLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -40,6 +50,7 @@
                     android:id="@+id/tvLoginEmail"
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:text="Email"
                     android:textColor="@color/white"
@@ -53,6 +64,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="sans-serif"
                     android:inputType="textEmailAddress"
                     android:textColor="@color/white"
                     android:textColorHighlight="@color/vivid_yellow"
@@ -68,6 +80,7 @@
                     android:id="@+id/tvLoginPass"
                     android:layout_width="93dp"
                     android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif"
                     android:gravity="center"
                     android:text="Password"
                     android:textColor="@color/white"
@@ -81,6 +94,7 @@
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
                     android:ems="10"
+                    android:fontFamily="sans-serif"
                     android:inputType="textPassword"
                     android:textColor="@color/white"
                     android:textColorHighlight="@color/vivid_yellow"
@@ -100,6 +114,7 @@
             android:layout_width="284dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
+            android:fontFamily="sans-serif"
             android:text="Log In"
             android:textColor="@color/deep_green" />
 
@@ -108,6 +123,7 @@
             android:layout_width="285dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/emerald"
+            android:fontFamily="sans-serif"
             android:text="Sign Up" />
 
     </LinearLayout>
