@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class CreateTable {
     public static void main() {
-        Connection c = MySQLConnection.getConnection();
+        Connection c = SQLInterface.getConnection();
         String query1 = "CREATE TABLE IF NOT EXISTS users (" +
                 "id INT PRIMARY KEY AUTO_INCREMENT, " +
                 "email VARCHAR(50) UNIQUE not null, " +
