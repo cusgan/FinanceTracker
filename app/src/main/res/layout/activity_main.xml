@@ -160,7 +160,7 @@
             android:layout_height="32dp"
             android:fontFamily="@font/inter_medium"
             android:gravity="bottom|center"
-            android:text="No account yet?"
+            android:text="No account?"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
