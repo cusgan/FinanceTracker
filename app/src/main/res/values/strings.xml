@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Finance Tracker App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="categories_array">
+        <item>Food</item>
+        <item>Housing</item>
+        <item>Transportation</item>
+        <item>Utilities</item>
+        <item>Healthcare</item>
+        <item>Savings</item>
+        <item>Miscellaneous</item>
+    </string-array>
 </resources>
