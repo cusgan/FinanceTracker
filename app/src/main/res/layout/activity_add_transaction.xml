@@ -5,7 +5,7 @@
     android:id="@+id/tvNTWallet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/emerald"
+    android:background="@color/deep_green"
     tools:context=".AddTransaction">
 
     <LinearLayout
@@ -22,6 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="42dp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -32,7 +36,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="338dp"
                 android:layout_height="61dp"
-                android:fontFamily="@font/barlow_black"
+                android:fontFamily="@font/inter_black"
                 android:gravity="center"
                 android:text="New Transaction"
                 android:textColor="@color/white"
@@ -77,6 +81,10 @@
 
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="13dp" />
+
         <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -87,28 +95,34 @@
                 android:id="@+id/rdbExpense"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
                 android:text="Expense"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/rdbIncome"
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
                 android:text="Income"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <RadioButton
                 android:id="@+id/rdbDebt"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/white"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
                 android:text="Debt"
-                android:textSize="16sp" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
         </RadioGroup>
 
         <TableLayout
@@ -127,7 +141,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="Wallet"
-                    android:textSize="16sp" />
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
                 <Spinner
                     android:id="@+id/spinner"
@@ -147,7 +162,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="Category"
-                    android:textSize="16sp" />
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
                 <Spinner
                     android:id="@+id/spnCategory"
@@ -169,16 +185,21 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="Date"
-                    android:textSize="16sp" />
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/editTextDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/inter_medium"
-                    android:gravity="center"
                     android:inputType="date"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="@color/vivid_yellow"
+                    android:textColorHint="@color/white"
+                    android:textColorLink="@color/vivid_yellow"
                     android:textSize="16sp" />
             </TableRow>
 
@@ -193,19 +214,29 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
                     android:text="Description"
-                    android:textSize="16sp" />
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
 
                 <EditText
                     android:id="@+id/tvNTDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:backgroundTint="@color/white"
                     android:ems="10"
                     android:fontFamily="@font/inter_medium"
                     android:inputType="text"
+                    android:textColor="@color/white"
+                    android:textColorHighlight="@color/vivid_yellow"
+                    android:textColorHint="@color/white"
+                    android:textColorLink="@color/vivid_yellow"
                     android:textSize="16sp" />
             </TableRow>
 
         </TableLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
 
         <Button
             android:id="@+id/btnSaveTrans"

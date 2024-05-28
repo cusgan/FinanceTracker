@@ -39,7 +39,7 @@
                         android:id="@+id/tvWelcome"
                         android:layout_width="233dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/inter_bold"
                         android:text="Welcome, user"
                         android:textColor="@color/white"
                         android:textSize="20sp" />
@@ -95,15 +95,14 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_medium"
-                                android:text="Total Balance"
-                                android:textColor="@color/black" />
+                                android:text="Total Balance" />
 
                             <TextView
-                                android:id="@+id/textView10"
+                                android:id="@+id/tvTotalBalance"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_medium"
-                                android:text="TextView"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="₱1023.45"
                                 android:textColor="@color/black"
                                 android:textSize="34sp" />
                         </LinearLayout>
@@ -111,7 +110,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/btnViewWallets"
                         android:layout_width="109dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0"
@@ -162,20 +161,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/inter_medium"
-                                    android:text="Income"
-                                    android:textColor="@color/black" />
+                                    android:text="Income" />
 
                                 <TextView
-                                    android:id="@+id/textView14"
+                                    android:id="@+id/tvIncome"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/inter_medium"
-                                    android:text="TextView"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="₱500.00"
                                     android:textColor="@color/black"
                                     android:textSize="20sp" />
 
                                 <TextView
-                                    android:id="@+id/textView20"
+                                    android:id="@+id/tvIncomePercent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/inter_medium"
@@ -205,20 +203,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/inter_medium"
-                                    android:text="Expenses"
-                                    android:textColor="@color/black" />
+                                    android:text="Expenses" />
 
                                 <TextView
-                                    android:id="@+id/textView15"
+                                    android:id="@+id/tvExpenses"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/inter_medium"
-                                    android:text="TextView"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="₱1025.25"
                                     android:textColor="@color/black"
                                     android:textSize="20sp" />
 
                                 <TextView
-                                    android:id="@+id/textView21"
+                                    android:id="@+id/tvExpensesPercent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/inter_medium"
@@ -242,20 +239,20 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/textView16"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/textView18"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_medium"
-                                android:text="Budget"
-                                android:textColor="@color/black" />
+                                android:text="Monthly Budget" />
 
                             <TextView
-                                android:id="@+id/textView17"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/tvBudgetTotal"
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_medium"
-                                android:text="P20 of P5000 spent"
-                                android:textColor="@color/black" />
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="₱700.00"
+                                android:textColor="@color/black"
+                                android:textSize="20sp" />
 
                             <ImageView
                                 android:id="@+id/imageView2"
@@ -265,21 +262,12 @@
                                 android:src="@drawable/chart_pie_solid" />
 
                             <TextView
-                                android:id="@+id/textView18"
-                                android:layout_width="match_parent"
+                                android:id="@+id/tvBudgetSpent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_medium"
-                                android:text="Monthly Budget"
+                                android:text="₱309.79 spent"
                                 android:textColor="@color/black" />
-
-                            <TextView
-                                android:id="@+id/textView19"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/inter_medium"
-                                android:text="TextView"
-                                android:textColor="@color/black"
-                                android:textSize="20sp" />
 
                         </LinearLayout>
 
@@ -308,8 +296,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/inter_medium"
-                        android:text="Goals"
-                        android:textColor="@color/black" />
+                        android:text="Goals" />
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
@@ -330,7 +317,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/textView25"
+                                    android:id="@+id/tvGoalTitle"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/inter_medium"
@@ -339,16 +326,16 @@
                                     android:textSize="16sp" />
 
                                 <TextView
-                                    android:id="@+id/textView26"
+                                    android:id="@+id/tvGoalProgress"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:fontFamily="@font/inter_medium"
+                                    android:fontFamily="@font/inter_semibold"
                                     android:text="200/1000"
                                     android:textColor="@color/black"
                                     android:textSize="20sp" />
 
                                 <TextView
-                                    android:id="@+id/textView27"
+                                    android:id="@+id/tvGoalPercent"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/inter_medium"
