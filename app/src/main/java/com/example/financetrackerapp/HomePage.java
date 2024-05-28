@@ -2,11 +2,14 @@ package com.example.financetrackerapp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,12 +56,32 @@ public class HomePage extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home_page, container, false);
+
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
+        tvBalance = (TextView) getView().findViewById(R.id.tvTotalBalance);
+        tvIncome = (TextView) getView().findViewById(R.id.tvIncome);
+        tvExpenses = (TextView) getView().findViewById(R.id.tvExpenses);
+        tvWelcome = (TextView) getView().findViewById(R.id.tvWelcome);
+
+        tvWelcome.setText("Welcome, "+UserData.name);
+        tvBalance.setText("₱"+UserData.totalBalance);
+        tvIncome.setText("₱"+UserData.totalIncome);
+        tvExpenses.setText("₱"+UserData.totalExpenses);
     }
 }
