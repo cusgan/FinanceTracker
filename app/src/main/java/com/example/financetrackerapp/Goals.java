@@ -1,11 +1,13 @@
 package com.example.financetrackerapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -139,13 +141,31 @@ class GoalAdapter extends RecyclerView.Adapter<GoalHolder>{
         holder.sex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLInterface.deleteGoal(goal.id);
-                UserData.goals.remove(index);
-                Goals.ga.notifyDataSetChanged();
-                MainPage.makeToast("Deleted Goal: "+goal.name);
-                // realod
-                Goals ga = Goals.newInstance(null,null);
-                MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,ga );
+                AlertDialog.Builder builder = new AlertDialog.Builder(theview.getContext());
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //----
+                        SQLInterface.deleteGoal(goal.id);
+                        UserData.goals.remove(index);
+                        Goals.ga.notifyDataSetChanged();
+                        MainPage.makeToast("Deleted Goal: "+goal.name);
+                        // realod
+                        Goals ga = Goals.newInstance(null,null);
+                        MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,ga );
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //cancel deletion
+                    }
+                });
+                builder.setMessage("Are you sure you would like to delete "+UserData.goals.get(index).name+"? ")
+                        .setTitle("Confirm Goal Deletion");
+
+// Create the AlertDialog.
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
     }
