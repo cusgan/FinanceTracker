@@ -1,10 +1,14 @@
 package com.example.financetrackerapp;
 
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +16,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -32,6 +38,8 @@ public class Wallets extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    TextView tvTotal, tvWalletCount;
+    Button btnAddWallet;
 
     public Wallets() {
         // Required empty public constructor
@@ -74,7 +82,6 @@ public class Wallets extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView tvTotal, tvWalletCount;
         tvTotal = (TextView) getView().findViewById(R.id.tvWalletTotalBal);
         tvWalletCount = (TextView) getView().findViewById(R.id.tvWalletCount);
         tvTotal.setText("₱"+UserData.totalBalance);
@@ -86,12 +93,23 @@ public class Wallets extends Fragment {
         rv.setAdapter(walletAdapter);
         View v = getView().findViewById(R.id.walletContainer);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+
+        btnAddWallet = (Button) getView().findViewById(R.id.btnAddWallet);
+        btnAddWallet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(
+                        view.getContext(),
+                        AddWallet.class
+                );
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        TextView tvTotal, tvWalletCount;
         tvTotal = (TextView) getView().findViewById(R.id.tvWalletTotalBal);
         tvWalletCount = (TextView) getView().findViewById(R.id.tvWalletCount);
         tvTotal.setText("₱"+UserData.totalBalance);
@@ -107,6 +125,7 @@ public class Wallets extends Fragment {
 }
 class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
     ArrayList<Wallet> wallets = UserData.wallets;
+    View theview;
 
     @NonNull
     @Override
@@ -115,7 +134,7 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
                 = parent.getContext();
         LayoutInflater inflater
                 = LayoutInflater.from(context);
-        View theview = inflater.inflate(R.layout.recycler_wallet, parent, false);
+        theview = inflater.inflate(R.layout.recycler_wallet, parent, false);
 
         WalletHolder viewHolder
                 = new WalletHolder(theview);
@@ -138,6 +157,42 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
 //                listiner.click(index);
 //            }
 //        });
+
+        holder.btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(
+                        theview.getContext(),
+                        InviteToWallet.class
+                );
+                theview.getContext().startActivity(intent);
+            }
+        });
+
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(theview.getContext());
+// Add the buttons.
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User taps OK button.
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //cancel deletion
+                    }
+                });
+// Set other dialog properties.
+                builder.setMessage("Are you sure you would like to delete [walletname]?")
+                        .setTitle("Confirm Wallet Deletion");
+
+// Create the AlertDialog.
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
     }
 
     @Override
@@ -148,11 +203,16 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
 class WalletHolder extends RecyclerView.ViewHolder {
     TextView tvname, tvbal,tvshared;
     View view;
+    Button btnShare, btnDelete;
 
     public WalletHolder(@NonNull View itemView) {
         super(itemView);
         tvname = (TextView)itemView.findViewById(R.id.tvWalletName);
         tvbal = (TextView) itemView.findViewById(R.id.tvWalletBal);
         tvshared=(TextView) itemView.findViewById(R.id.tvWalletShared);
+        btnShare = (Button) itemView.findViewById(R.id.btnShareWallet);
+        btnDelete = (Button) itemView.findViewById(R.id.btnDeleteWallet);
     }
+
+
 }
