@@ -41,14 +41,15 @@ public class SQLInterface {
                         "(`accid` INT NOT NULL AUTO_INCREMENT ," +
                         "`email` VARCHAR(50) UNIQUE NOT NULL ," +
                         "`password` VARCHAR(100) NOT NULL ," +
-                        "`budget` FLOAT NOT NULL DEFAULT '0'," +
-                        "`spent` FLOAT NOT NULL DEFAULT '0'," +
                         " PRIMARY KEY (`accid`));");
                 Statement statement2 = c.createStatement();
                 statement2.execute("" +
                         "CREATE TABLE IF NOT EXISTS `dbspendsmart`.`tbluser` " +
-                        "(`userid` INT NOT NULL AUTO_INCREMENT , `accid` INT NOT NULL , `name` VARCHAR(50) NOT NULL " +
-                        ", PRIMARY KEY (`userid`));");
+                        "(`userid` INT NOT NULL AUTO_INCREMENT , " +
+                        "`accid` INT NOT NULL , `name` VARCHAR(50) NOT NULL ," +
+                        "`budget` FLOAT NOT NULL DEFAULT '0'," +
+                        "`spent` FLOAT NOT NULL DEFAULT '0'," +
+                        " PRIMARY KEY (`userid`));");
                 Statement statement3 = c.createStatement();
                 statement3.execute("" +
                         "CREATE TABLE IF NOT EXISTS`dbspendsmart`.`tblwallet` " +
@@ -81,6 +82,22 @@ public class SQLInterface {
                         "`amount` FLOAT NOT NULL ," +
                         "`transactiondate` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP, "+
                         " PRIMARY KEY (`transactionid`))");
+                Statement statement6 = c.createStatement();
+                statement6.execute("" +
+                        "CREATE TABLE IF NOT EXISTS `dbspendsmart`.`tblnotif` (" +
+                        "`notifid` INT NOT NULL AUTO_INCREMENT , " +
+                        "`text` VARCHAR(60) NOT NULL , " +
+                        "`userid` INT NOT NULL , PRIMARY KEY (`notifid`)); ");
+                Statement statement7 = c.createStatement();
+                statement7.execute("" +
+                        "CREATE TABLE IF NOT EXISTS `dbspendsmart`.`tblinvite` (" +
+                        "`inviteid` INT NOT NULL AUTO_INCREMENT , " +
+                        "`text` VARCHAR(60) NOT NULL , " +
+                        "`walletid` INT NOT NULL , " +
+                        "`userid` INT NOT NULL , " +
+                        "`isaccept` BOOLEAN NOT NULL DEFAULT FALSE ,"+
+                        "`isanswer` BOOLEAN NOT NULL DEFAULT FALSE ,"+
+                        " PRIMARY KEY (`inviteid`)); ");
                 success.set(true);
             } catch(SQLException e){
                 e.printStackTrace();
@@ -265,6 +282,10 @@ public class SQLInterface {
                 );
                 if(res.next()) {
                     UserData.name = res.getString("name");
+                    try{
+                        UserData.monthlyBudget = res.getFloat("budget");
+                        UserData.budgetSpent = res.getFloat("spent");
+                    } catch (Exception e){e.printStackTrace();}
                 }
                 float totalBalance = 0;
                 Statement statement2 = c.createStatement();
@@ -385,6 +406,21 @@ public class SQLInterface {
         try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) { e.printStackTrace();}
     }
+    public static void deleteNotif(int notifid){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute(""+
+                        "DELETE FROM tblnotif WHERE notifif="+notifid+";"
+                );
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+    }
     public static void deleteWallet(int walletid){
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.execute(()->{
@@ -400,4 +436,60 @@ public class SQLInterface {
         try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) { e.printStackTrace();}
     }
+    public static int sendInvite(int walletid, int useridTarget, String senderName, String walletName){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        AtomicInteger inviteid = new AtomicInteger(-1);
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute(""+
+                                "INSERT INTO " +
+                                "tblinvite (text, walletid, userid)" +
+                                "values ('"+senderName+" invited you to their Wallet : "+walletName+"',"+walletid+","+useridTarget+")"
+                        ,Statement.RETURN_GENERATED_KEYS);
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if(generatedKeys.next())
+                    inviteid.set(generatedKeys.getInt(1));
+                else
+                    throw new SQLException("No Key Obtained");
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+        return inviteid.get();
+    }
+//    public static void acceptInvite(int inviteid){
+//        ExecutorService executor = Executors.newSingleThreadExecutor();
+//        AtomicInteger transid = new AtomicInteger(-1);
+//        executor.execute(()->{
+//            try(Connection c = getConnection()){
+//                Statement statement = c.createStatement();
+//                statement.execute(""+
+//                                "INSERT INTO " +
+//                                "tbltransaction (transactiondesc, category, amount, walletid,userid)" +
+//                                "values ('Goal: "+goalname+"','Goals',"+(-amount)+","+walletid+","+userid+")"
+//                        ,Statement.RETURN_GENERATED_KEYS);
+//                ResultSet generatedKeys = statement.getGeneratedKeys();
+//                if(generatedKeys.next())
+//                    transid.set(generatedKeys.getInt(1));
+//                else
+//                    throw new SQLException("No Key Obtained");
+//                Statement statement2 = c.createStatement();
+//                statement2.execute("" +
+//                        "UPDATE tblwallet SET balance = (balance - "+amount+") " +
+//                        "WHERE walletid = "+walletid+";");
+//                Statement statement3 = c.createStatement();
+//                statement3.execute("" +
+//                        "UPDATE tblgoal SET balance = (balance + "+amount+") " +
+//                        "WHERE goalid = "+goalid+";");
+//            } catch(SQLException e){
+//                e.printStackTrace();
+//            }
+//        });
+//        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+//        } catch (InterruptedException e) { e.printStackTrace();}
+//        return transid.get();
+//    }
 }
