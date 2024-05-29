@@ -17,7 +17,7 @@ public class SQLInterface {
     public static final String URL = "jdbc:mysql://"+IP+":3306/dbspendsmart";
     public static final String USERNAME = "root";
     public static final String PASSWORD = "";
-    private static final long TIMEOUT = 1000;
+    private static final long TIMEOUT = 120;
 
     static Connection getConnection() {
         Connection c = null;

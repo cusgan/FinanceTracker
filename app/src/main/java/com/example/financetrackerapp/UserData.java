@@ -14,6 +14,13 @@ public class UserData {
     public static ArrayList<Goal> goals = new ArrayList<>();
     public static ArrayList<Notif> notifs = new ArrayList<>();
     public static ArrayList<Invite> invites = new ArrayList<>();
+    public static Wallet getWallet(int walletid){
+        for(int i=0; i<wallets.size(); i++){
+            if(wallets.get(i).id == walletid)
+                return wallets.get(i);
+        }
+        return null;
+    }
 }
 class Wallet{
     public Wallet(int id, String name, float balance, int userid1,int userid2){

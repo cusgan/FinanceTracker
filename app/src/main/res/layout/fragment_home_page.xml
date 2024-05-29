@@ -279,10 +279,29 @@
                                 android:fontFamily="@font/inter_medium"
                                 android:text="(12.50%)" />
 
-                            <com.google.android.material.progressindicator.CircularProgressIndicator
-                                app:indicatorSize="64dp"
-                                android:layout_height="50dp"
-                                android:layout_width="50dp"/>
+                            <Space
+                                android:layout_width="match_parent"
+                                android:layout_height="10dp" />
+
+                            <Button
+                                android:id="@+id/button4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/mustard_yellow"
+                                android:fontFamily="@font/inter_bold"
+                                android:text="Budgeting"
+                                android:textSize="12sp"
+                                app:cornerRadius="180dp" />
+
+                            <Button
+                                android:id="@+id/button3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:backgroundTint="@color/emerald"
+                                android:fontFamily="@font/inter_bold"
+                                android:text="Statistics"
+                                android:textSize="12sp"
+                                app:cornerRadius="180dp" />
 
                         </LinearLayout>
 
@@ -318,7 +337,8 @@
                             android:layout_marginTop="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
-                            android:text="Goals" />
+                            android:text="Goals"
+                            android:textSize="16sp" />
 
                         <Button
                             android:id="@+id/btnGoals"

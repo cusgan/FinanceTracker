@@ -128,7 +128,7 @@ public class HomePage extends Fragment {
         });
 
 
-        btnGoals = (Button) getView().findViewById(R.id.btnViewGoals);
+        btnGoals = (Button) getView().findViewById(R.id.btnGoals);
         btnGoals.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

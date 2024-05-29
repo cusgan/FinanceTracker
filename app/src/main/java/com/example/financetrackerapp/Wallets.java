@@ -29,6 +29,7 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class Wallets extends Fragment {
+    public static WalletAdapter wa;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,6 +91,7 @@ public class Wallets extends Fragment {
         tvWalletCount.setText("from "+UserData.wallets.size()+ " wallet"+s);
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.walletRecycler);
         WalletAdapter walletAdapter = new WalletAdapter();
+        Wallets.wa = walletAdapter;
         rv.setAdapter(walletAdapter);
         View v = getView().findViewById(R.id.walletContainer);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
@@ -119,6 +121,7 @@ public class Wallets extends Fragment {
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.walletRecycler);
         WalletAdapter walletAdapter = new WalletAdapter();
         rv.setAdapter(walletAdapter);
+        Wallets.wa = walletAdapter;
         View v = getView().findViewById(R.id.walletContainer);
         rv.setLayoutManager(new LinearLayoutManager(v.getContext()));
     }
@@ -150,14 +153,7 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
             holder.tvshared.setText("(Shared Wallet.)");
         else
             holder.tvshared.setText(" ");
-//        holder.view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                listiner.click(index);
-//            }
-//        });
-        if(holder.btnDelete==null || holder.btnShare==null) return;
+
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -178,6 +174,10 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
                 builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // User taps OK button.
+                        SQLInterface.deleteWallet(UserData.wallets.get(index).id);
+
+                        SQLInterface.getUserData(UserData.userid);
+                        Wallets.wa.notifyDataSetChanged();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -186,7 +186,7 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
                     }
                 });
 // Set other dialog properties.
-                builder.setMessage("Are you sure you would like to delete [walletname]?")
+                builder.setMessage("Are you sure you would like to delete "+UserData.wallets.get(index)+"? ")
                         .setTitle("Confirm Wallet Deletion");
 
 // Create the AlertDialog.
@@ -214,6 +214,4 @@ class WalletHolder extends RecyclerView.ViewHolder {
         btnShare = (Button) itemView.findViewById(R.id.btnShareWallet);
         btnDelete = (Button) itemView.findViewById(R.id.btnDeleteWallet);
     }
-
-
 }

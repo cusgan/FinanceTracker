@@ -1,12 +1,23 @@
 package com.example.financetrackerapp;
 
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +25,7 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class TransactionHistory extends Fragment {
+    public static TransAdapter adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +72,60 @@ public class TransactionHistory extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_transaction_history, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView rv = (RecyclerView) getView().findViewById(R.id.recyclerTransaction);
+        TransAdapter t = new TransAdapter();
+        adapter = t;
+        rv.setAdapter(t);
+        TransactionHistory.adapter = t;
+        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+    }
+}
+class TransAdapter extends RecyclerView.Adapter<TransHolder>{
+    ArrayList<Transaction> list = UserData.transactions;
+    View theview;
+
+    @NonNull
+    @Override
+    public TransHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context
+                = parent.getContext();
+        LayoutInflater inflater
+                = LayoutInflater.from(context);
+        theview = inflater.inflate(R.layout.recycler_transaction, parent, false);
+
+        TransHolder viewHolder
+                = new TransHolder(theview);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull TransHolder holder, int position) {
+        final int index = holder.getAdapterPosition();
+        Transaction transaction = UserData.transactions.get(index);
+        holder.amountDisplay.setText(String.format("%.2f",transaction.amount));
+        holder.walletDisplay.setText(UserData.getWallet(transaction.walletid).name);
+        holder.descDisplay.setText(""+transaction.description);
+        holder.deetsDisplay.setText(""+transaction.category + " - "+transaction.datetime.toString());
+    }
+
+    @Override
+    public int getItemCount() {
+        return list.size();
+    }
+}
+class TransHolder extends RecyclerView.ViewHolder{
+    TextView amountDisplay, walletDisplay, descDisplay, deetsDisplay;
+
+    public TransHolder(@NonNull View itemView) {
+        super(itemView);
+        amountDisplay = (TextView) itemView.findViewById(R.id.tvTrHistAmt);
+        walletDisplay = (TextView) itemView.findViewById(R.id.tvTrHistWallet);
+          descDisplay = (TextView) itemView.findViewById(R.id.tvTrHistDesc);
+         deetsDisplay = (TextView) itemView.findViewById(R.id.tvTrHistDetails);
     }
 }

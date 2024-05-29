@@ -99,7 +99,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/inter_medium"
                             android:paddingHorizontal="8dp"
-                            android:text="50% saved"
+                            android:text="50% reached"
                             android:textColor="@color/mustard_yellow"
                             android:textSize="16sp" />
                     </LinearLayout>
