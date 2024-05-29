@@ -49,7 +49,7 @@ public class SQLInterface {
                         "CREATE TABLE IF NOT EXISTS `dbspendsmart`.`tbluser` " +
                         "(`userid` INT NOT NULL AUTO_INCREMENT , " +
                         "`accid` INT NOT NULL , `name` VARCHAR(50) NOT NULL ," +
-                        "`budget` FLOAT NOT NULL DEFAULT '0'," +
+                        "`budget` FLOAT NOT NULL DEFAULT '1000'," +
                         "`spent` FLOAT NOT NULL DEFAULT '0'," +
                         " PRIMARY KEY (`userid`));");
                 Statement statement3 = c.createStatement();
@@ -264,6 +264,10 @@ public class SQLInterface {
                 statement2.execute("" +
                         "UPDATE tblwallet SET balance = (balance + "+amount+") " +
                         "WHERE walletid = "+walletid+";");
+                Statement statement3 = c.createStatement();
+                statement3.execute("" +
+                        "UPDATE tbluser SET spent = (spent - "+amount+") " +
+                        "WHERE userid = "+userid+";");
             } catch(SQLException e){
                 e.printStackTrace();
             }
