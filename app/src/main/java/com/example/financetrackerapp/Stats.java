@@ -57,6 +57,17 @@ public class Stats extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        startDate = (EditText) getView().findViewById(R.id.txtStatStart);
+        endDate = (EditText) getView().findViewById(R.id.txtStatEnd);
+        netIncome = (TextView) getView().findViewById(R.id.tvNetIncome);
+        netExpense = (TextView) getView().findViewById(R.id.tvNetExpenses);
+        totalIncome = (TextView) getView().findViewById(R.id.tvTotalIncome);
+        totalExpense = (TextView) getView().findViewById(R.id.tvTotalExpenses);
+        largestExpense = (TextView) getView().findViewById(R.id.tvLargestExpense);
+        largestExpName = (TextView) getView().findViewById(R.id.tvLargeExpenseName);
+        mostSpentCat = (TextView) getView().findViewById(R.id.tvMostSpentCategory);
+
     }
 
     @Override

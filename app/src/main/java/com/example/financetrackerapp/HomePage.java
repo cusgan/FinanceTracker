@@ -29,7 +29,7 @@ public class HomePage extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
-    ImageButton btnNotifs, btnProfile;
+    ImageButton btnNotifs;
     Button btnWallets, btnGoals, btnBudget, btnStats;
 
     // TODO: Rename and change types of parameters
@@ -101,17 +101,6 @@ public class HomePage extends Fragment {
                 activity.getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.frameMainPage, Notifications.class, null)
-                        .addToBackStack(null).commit();
-            }
-        });
-
-        btnProfile = (ImageButton) getView().findViewById(R.id.btnProfile);
-        btnProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                activity.getSupportFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.frameMainPage, Profile.class, null)
                         .addToBackStack(null).commit();
             }
         });

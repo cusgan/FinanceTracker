@@ -75,7 +75,7 @@ public class Goals extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(
                         v.getContext(),
-                        Goals.class
+                        AddGoal.class
                 );
                 startActivity(intent);
             }
