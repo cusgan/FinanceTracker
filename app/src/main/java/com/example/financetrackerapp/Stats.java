@@ -10,6 +10,10 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Timestamp;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link Stats#newInstance} factory method to
@@ -22,7 +26,7 @@ public class Stats extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     EditText startDate, endDate;
-    TextView netIncome, netExpense, totalIncome, totalExpense, largestExpense, largestExpName, mostSpentCat;
+    TextView dates, netIncome, netExpense, totalIncome, totalExpense, largestExpense, largestExpName, mostSpentCat;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -60,6 +64,7 @@ public class Stats extends Fragment {
 
         startDate = (EditText) getView().findViewById(R.id.txtStatStart);
         endDate = (EditText) getView().findViewById(R.id.txtStatEnd);
+        dates = (TextView) getView().findViewById(R.id.tvStatsFromTo);
         netIncome = (TextView) getView().findViewById(R.id.tvNetIncome);
         netExpense = (TextView) getView().findViewById(R.id.tvNetExpenses);
         totalIncome = (TextView) getView().findViewById(R.id.tvTotalIncome);
@@ -68,6 +73,24 @@ public class Stats extends Fragment {
         largestExpName = (TextView) getView().findViewById(R.id.tvLargeExpenseName);
         mostSpentCat = (TextView) getView().findViewById(R.id.tvMostSpentCategory);
 
+        String strStart = startDate.getText().toString(), strEnd = endDate.getText().toString();
+        Timestamp start = Timestamp.valueOf(strStart);
+        Timestamp end = Timestamp.valueOf(strEnd);
+
+        dates.setText("Stats from "+ strStart +" to "+ strEnd);
+        try (
+                Connection c = SQLInterface.getConnection(); /*automatically close()*/
+                PreparedStatement statement = c.prepareStatement(
+                        "SELECT SUM(amount) WHERE date >= ? AND date <= ?"
+                );
+                ) {
+
+            statement.setDate(1, start);
+            statement.setDate(2, end);
+
+        } catch (Exception e) {
+
+        }
     }
 
     @Override
