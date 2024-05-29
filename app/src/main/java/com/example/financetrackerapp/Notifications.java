@@ -1,12 +1,21 @@
 package com.example.financetrackerapp;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,5 +69,123 @@ public class Notifications extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_notifications, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        RecyclerView rv = (RecyclerView) getView().findViewById(R.id.recyclerNotifs);
+        NotifAdapter na = new NotifAdapter();
+        rv.setAdapter(na);
+        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+
+        RecyclerView rv2 = (RecyclerView) getView().findViewById(R.id.recyclerInvites);
+        InvAdapter na2 = new InvAdapter();
+        rv2.setAdapter(na2);
+        rv2.setLayoutManager(new LinearLayoutManager(rv2.getContext()));
+    }
+}
+
+class NotifHolder extends RecyclerView.ViewHolder {
+    TextView tvtext;
+    Button dismiss;
+    View view;
+
+    public NotifHolder(@NonNull View itemView) {
+        super(itemView);
+        tvtext = (TextView) itemView.findViewById(R.id.tvNotifBody);
+        dismiss = (Button) itemView.findViewById(R.id.btnDismissNotif);
+    }
+}
+class NotifAdapter extends RecyclerView.Adapter<NotifHolder>{
+    ArrayList<Notif> notifs = UserData.notifs;
+
+    @NonNull
+    @Override
+    public NotifHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context
+                = parent.getContext();
+        LayoutInflater inflater
+                = LayoutInflater.from(context);
+        View theview = inflater.inflate(R.layout.recycler_notif, parent, false);
+
+        NotifHolder viewHolder
+                = new NotifHolder(theview);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull NotifHolder holder, int position) {
+        final int index = holder.getAdapterPosition();
+        holder.tvtext.setText(notifs.get(index).text+" ");
+        final int notifID = notifs.get(index).id;
+        holder.dismiss.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLInterface.deleteNotif(notifID);
+                SQLInterface.getUserData(UserData.userid);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return notifs.size();
+    }
+}
+
+class InvHolder extends RecyclerView.ViewHolder {
+    TextView tvtext;
+    Button yes,no;
+    View view;
+
+    public InvHolder(@NonNull View itemView) {
+        super(itemView);
+        tvtext = (TextView) itemView.findViewById(R.id.tvInvBody);
+        yes = (Button) itemView.findViewById(R.id.btnAcceptWallet);
+        no = (Button) itemView.findViewById(R.id.btnDeleteWallet);
+    }
+}
+class InvAdapter extends RecyclerView.Adapter<InvHolder>{
+    ArrayList<Invite> notifs = UserData.invites;
+
+    @NonNull
+    @Override
+    public InvHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context
+                = parent.getContext();
+        LayoutInflater inflater
+                = LayoutInflater.from(context);
+        View theview = inflater.inflate(R.layout.recycler_invites, parent, false);
+
+        InvHolder viewHolder
+                = new InvHolder(theview);
+        return viewHolder;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull InvHolder holder, int position) {
+        final int index = holder.getAdapterPosition();
+        holder.tvtext.setText(notifs.get(index).text+" ");
+        final int notifID = notifs.get(index).id;
+        holder.yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLInterface.acceptInvite(notifID);
+                SQLInterface.getUserData(UserData.userid);
+            }
+        });
+        holder.no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SQLInterface.deleteNotif(notifID);
+                SQLInterface.getUserData(UserData.userid);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return notifs.size();
     }
 }
