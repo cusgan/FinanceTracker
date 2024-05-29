@@ -465,16 +465,21 @@ public class SQLInterface {
         try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) { e.printStackTrace();}
     }
-    public static int sendInvite(int walletid, int useridTarget, String senderName, String walletName){
+    public static int sendInvite(int walletid, String targetEmail, String senderName, String walletName){
         ExecutorService executor = Executors.newSingleThreadExecutor();
         AtomicInteger inviteid = new AtomicInteger(-1);
         executor.execute(()->{
             try(Connection c = getConnection()){
+                Statement st = c.createStatement();
+                int ue=-1;
+                ResultSet r= st.executeQuery("SELECT userid FROM tbluser,tblaccount WHERE tblaccount.email='"+targetEmail+"' AND tbluser.accid=tblaccount.accid");
+                if(r.next())
+                    ue=r.getInt(1);
                 Statement statement = c.createStatement();
                 statement.execute(""+
                                 "INSERT INTO " +
                                 "tblinvite (text, walletid, userid)" +
-                                "values ('"+senderName+" invited you to their Wallet : "+walletName+"',"+walletid+","+useridTarget+")"
+                                "values ('"+senderName+" invited you to their Wallet : "+walletName+"',"+walletid+","+ue+")"
                         ,Statement.RETURN_GENERATED_KEYS);
                 ResultSet generatedKeys = statement.getGeneratedKeys();
                 if(generatedKeys.next())

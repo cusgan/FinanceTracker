@@ -157,10 +157,11 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
 //                listiner.click(index);
 //            }
 //        });
-
+        if(holder.btnDelete==null || holder.btnShare==null) return;
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                UserData.selectedwallet = index;
                 Intent intent = new Intent(
                         theview.getContext(),
                         InviteToWallet.class

@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class InviteToWallet extends AppCompatActivity {
-    Button btnShare, btnCancel;
+    Button btnShare, btnCancel; TextView inputemail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,11 +17,18 @@ public class InviteToWallet extends AppCompatActivity {
 
         btnShare = (Button) findViewById(R.id.btnShareWallet);
         btnCancel = (Button) findViewById(R.id.btnCancelShare);
-
+        inputemail = (TextView) findViewById(R.id.txtShareWith);
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //sql stuff;
+                try{
+                    String email = inputemail.getText().toString();
+                    SQLInterface.sendInvite(
+                            UserData.wallets.get(UserData.selectedwallet).id,
+                            email,
+                            UserData.name,
+                            UserData.wallets.get(UserData.selectedwallet).name);
+                } catch (Exception e){}
                 finish();
             }
         });
