@@ -6,10 +6,11 @@ import java.util.ArrayList;
 public class UserData {
     public static boolean debug = false;
     public static int accid,userid;
-    public static float totalBalance,totalIncome,totalExpenses;
+    public static float totalBalance,totalIncome,totalExpenses, monthlyBudget, budgetSpent;
     public static String name = "User", email = "email";
     public static ArrayList<Wallet> wallets = new ArrayList<>();
     public static ArrayList<Transaction> transactions = new ArrayList<>();
+    public static ArrayList<Goal> goals = new ArrayList<>();
 }
 class Wallet{
     public Wallet(int id, String name, float balance, int userid1,int userid2){
@@ -28,4 +29,9 @@ class Transaction{
     public String description,category;
     public float amount;
     public Timestamp datetime;
+}
+class Goal{
+    public int id,userid1, userid2;
+    public String name;
+    public float amount, balance;
 }

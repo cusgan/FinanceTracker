@@ -127,4 +127,19 @@ public class HomePage extends Fragment {
             }
         });
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
+        tvBalance = (TextView) getView().findViewById(R.id.tvTotalBalance);
+        tvIncome = (TextView) getView().findViewById(R.id.tvIncome);
+        tvExpenses = (TextView) getView().findViewById(R.id.tvExpenses);
+        tvWelcome = (TextView) getView().findViewById(R.id.tvWelcome);
+
+        tvWelcome.setText("Welcome, "+UserData.name);
+        tvBalance.setText("₱"+UserData.totalBalance);
+        tvIncome.setText("₱"+UserData.totalIncome);
+        tvExpenses.setText("₱"+UserData.totalExpenses);
+    }
 }

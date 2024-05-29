@@ -38,8 +38,12 @@ public class SQLInterface {
                 Statement statement = c.createStatement();
                 statement.execute("" +
                         "CREATE TABLE IF NOT EXISTS `dbspendsmart`.`tblaccount` " +
-                        "(`accid` INT NOT NULL AUTO_INCREMENT ,`email` VARCHAR(50) UNIQUE NOT NULL " +
-                        ", `password` VARCHAR(100) NOT NULL , PRIMARY KEY (`accid`));");
+                        "(`accid` INT NOT NULL AUTO_INCREMENT ," +
+                        "`email` VARCHAR(50) UNIQUE NOT NULL ," +
+                        "`password` VARCHAR(100) NOT NULL ," +
+                        "`budget` FLOAT NOT NULL DEFAULT '0'," +
+                        "`spent` FLOAT NOT NULL DEFAULT '0'," +
+                        " PRIMARY KEY (`accid`));");
                 Statement statement2 = c.createStatement();
                 statement2.execute("" +
                         "CREATE TABLE IF NOT EXISTS `dbspendsmart`.`tbluser` " +
@@ -109,7 +113,17 @@ public class SQLInterface {
                         "INSERT INTO " +
                         "tbluser (accid, name)" +
                         "values ("+accid+",'"+name+"')"
-                );
+                ,Statement.RETURN_GENERATED_KEYS);
+                Statement statement3 = c.createStatement();
+                generatedKeys = statement2.getGeneratedKeys();
+                int userid = -1;
+                if(generatedKeys.next())
+                    userid = generatedKeys.getInt(1);
+                statement3.execute(""+
+                                "INSERT INTO " +
+                                "tblwallet (walletname, balance, userid1)" +
+                                "values ('Main Wallet',0,"+userid+")"
+                        ,Statement.RETURN_GENERATED_KEYS);
                 success.set(true);
             } catch(SQLException e){
                 e.printStackTrace();
@@ -254,7 +268,7 @@ public class SQLInterface {
                 }
                 float totalBalance = 0;
                 Statement statement2 = c.createStatement();
-                res = statement.executeQuery(""+
+                res = statement2.executeQuery(""+
                         "SELECT * " +
                         "FROM tblwallet " +
                         "WHERE userid1="+userid+" OR userid2="+userid+";"
@@ -275,7 +289,7 @@ public class SQLInterface {
                 UserData.totalBalance = totalBalance;
 
                 Statement statement3 = c.createStatement();
-                res = statement.executeQuery(""+
+                res = statement3.executeQuery(""+
                         "SELECT * " +
                         "FROM tbltransaction " +
                         "WHERE userid="+userid+" ;"
@@ -299,12 +313,91 @@ public class SQLInterface {
                 }
                 UserData.totalExpenses = expenses;
                 UserData.totalIncome = income;
+                UserData.goals = new ArrayList<>();
+                Statement statement4 = c.createStatement();
+                res = statement4.executeQuery(""+
+                        "SELECT * " +
+                        "FROM tblgoal " +
+                        "WHERE userid1="+userid+" OR userid2 ="+userid+";"
+                );
+                while(res.next()){
+                    Goal g = new Goal();
+                    g.id = res.getInt("goalid");
+                    g.userid1 = res.getInt("userid1");
+                    g.userid2 = res.getInt("userid2");
+                    g.amount = res.getFloat("goalamount");
+                    g.balance= res.getFloat("balance");
+                    g.name = res.getString("goalname");
+                    UserData.goals.add(g);
+                }
 
             } catch(SQLException e){
                 e.printStackTrace();
             }
         });
         try { executor.awaitTermination(TIMEOUT+1000, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+    }
+    public static int transactGoal(int goalid, String goalname, int walletid, float amount, int userid){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        AtomicInteger transid = new AtomicInteger(-1);
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute(""+
+                                "INSERT INTO " +
+                                "tbltransaction (transactiondesc, category, amount, walletid,userid)" +
+                                "values ('Goal: "+goalname+"','Goals',"+(-amount)+","+walletid+","+userid+")"
+                        ,Statement.RETURN_GENERATED_KEYS);
+                ResultSet generatedKeys = statement.getGeneratedKeys();
+                if(generatedKeys.next())
+                    transid.set(generatedKeys.getInt(1));
+                else
+                    throw new SQLException("No Key Obtained");
+                Statement statement2 = c.createStatement();
+                statement2.execute("" +
+                        "UPDATE tblwallet SET balance = (balance - "+amount+") " +
+                        "WHERE walletid = "+walletid+";");
+                Statement statement3 = c.createStatement();
+                statement3.execute("" +
+                        "UPDATE tblgoal SET balance = (balance + "+amount+") " +
+                        "WHERE goalid = "+goalid+";");
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+        return transid.get();
+    }
+    public static void deleteGoal(int goalid){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute(""+
+                                "DELETE FROM tblgoal WHERE goalid="+goalid+";"
+                );
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+    }
+    public static void deleteWallet(int walletid){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute(""+
+                        "UPDATE tblwallet SET isdeleted = 1 WHERE walletid="+walletid+";"
+                );
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) { e.printStackTrace();}
     }
 }

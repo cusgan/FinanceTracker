@@ -306,11 +306,12 @@
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="wrap_content">
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:id="@+id/tmpGoal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_margin="5dp"
                             app:cardBackgroundColor="#E3E3E3"
                             app:cardCornerRadius="30dp"
