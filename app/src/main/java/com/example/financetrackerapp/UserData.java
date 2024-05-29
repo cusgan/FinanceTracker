@@ -11,6 +11,8 @@ public class UserData {
     public static ArrayList<Wallet> wallets = new ArrayList<>();
     public static ArrayList<Transaction> transactions = new ArrayList<>();
     public static ArrayList<Goal> goals = new ArrayList<>();
+    public static ArrayList<Notif> notifs = new ArrayList<>();
+    public static ArrayList<Invite> invites = new ArrayList<>();
 }
 class Wallet{
     public Wallet(int id, String name, float balance, int userid1,int userid2){
@@ -34,4 +36,12 @@ class Goal{
     public int id,userid1, userid2;
     public String name;
     public float amount, balance;
+}
+class Notif{
+    public int id,userid;
+    public String text;
+}
+class Invite{
+    public int id,walletid,userid;
+    public String text;
 }

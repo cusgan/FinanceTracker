@@ -351,6 +351,35 @@ public class SQLInterface {
                     g.name = res.getString("goalname");
                     UserData.goals.add(g);
                 }
+                UserData.invites = new ArrayList<>();
+                Statement statement5 = c.createStatement();
+                res = statement5.executeQuery(""+
+                        "SELECT * " +
+                        "FROM tblinvite " +
+                        "WHERE userid="+userid+";"
+                );
+                while(res.next()){
+                    Invite invite = new Invite();
+                    invite.id = res.getInt("inviteid");
+                    invite.text = res.getString("text");
+                    invite.walletid = res.getInt("walletid");
+                    invite.userid = res.getInt("userid");
+                    UserData.invites.add(invite);
+                }
+                UserData.notifs = new ArrayList<>();
+                Statement statement6 = c.createStatement();
+                res = statement6.executeQuery(""+
+                        "SELECT * " +
+                        "FROM tblnotif " +
+                        "WHERE userid="+userid+";"
+                );
+                while(res.next()){
+                    Notif invite = new Notif();
+                    invite.id = res.getInt("notifid");
+                    invite.text = res.getString("text");
+                    invite.userid = res.getInt("userid");
+                    UserData.notifs.add(invite);
+                }
 
             } catch(SQLException e){
                 e.printStackTrace();
@@ -412,7 +441,7 @@ public class SQLInterface {
             try(Connection c = getConnection()){
                 Statement statement = c.createStatement();
                 statement.execute(""+
-                        "DELETE FROM tblnotif WHERE notifif="+notifid+";"
+                        "DELETE FROM tblnotif WHERE notifid="+notifid+";"
                 );
             } catch(SQLException e){
                 e.printStackTrace();
