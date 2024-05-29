@@ -28,7 +28,7 @@ public class HomePage extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
+    TextView tvBalance, tvIncome, tvExpenses, tvWelcome, tvBudgetTotal, tvBudgetSpent, tvSpentPercent;
     ImageButton btnNotifs, btnProfile;
     Button btnWallets, btnGoals, btnBudget, btnStats;
 
@@ -89,10 +89,23 @@ public class HomePage extends Fragment {
         tvExpenses = (TextView) getView().findViewById(R.id.tvExpenses);
         tvWelcome = (TextView) getView().findViewById(R.id.tvWelcome);
 
+        tvBudgetTotal = getView().findViewById(R.id.tvBudgetTotal);
+        tvBudgetSpent = getView().findViewById(R.id.tvBudgetSpent);
+        tvSpentPercent  = getView().findViewById(R.id.tvSpentPercent);
+
         tvWelcome.setText("Welcome, " + UserData.name);
         tvBalance.setText("₱" + String.format("%.2f", UserData.totalBalance));
         tvIncome.setText("₱" + String.format("%.2f", UserData.totalIncome));
         tvExpenses.setText("₱" + String.format("%.2f", UserData.totalExpenses));
+
+        tvBudgetTotal.setText("₱" + String.format("%.2f", UserData.monthlyBudget));
+        tvBudgetSpent.setText("₱" + String.format("%.2f", UserData.budgetSpent)+" spent");
+        float percnt = -1;
+        percnt = 10.0f*((float)UserData.budgetSpent/(float)UserData.monthlyBudget+0.1f);
+        if(Float.isNaN(percnt))
+            tvSpentPercent.setText("- - -");
+        else
+            tvSpentPercent.setText("("+ percnt +"%)");
 
         btnNotifs = (ImageButton) getView().findViewById(R.id.btnNotifs);
         btnNotifs.setOnClickListener(new View.OnClickListener() {
