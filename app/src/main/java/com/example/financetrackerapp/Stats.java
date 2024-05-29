@@ -12,8 +12,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 /**
@@ -28,7 +31,7 @@ public class Stats extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     EditText startDate, endDate;
-    TextView dates, netIncome, netExpense, totalIncome, totalExpense, largestExpense, largestExpName, mostSpentCat;
+    TextView dates, netBal, netIncome, netExpense, totalIncome, totalExpense, largestExpense, largestExpName, mostSpentCat;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -80,6 +83,7 @@ public class Stats extends Fragment {
         startDate = (EditText) getView().findViewById(R.id.txtStatStart);
         endDate = (EditText) getView().findViewById(R.id.txtStatEnd);
         dates = (TextView) getView().findViewById(R.id.tvStatsFromTo);
+        netBal = (TextView) getView().findViewById(R.id.tvStatNetBal);
         netIncome = (TextView) getView().findViewById(R.id.tvNetIncome);
         netExpense = (TextView) getView().findViewById(R.id.tvNetExpenses);
         totalIncome = (TextView) getView().findViewById(R.id.tvTotalIncome);
@@ -89,22 +93,28 @@ public class Stats extends Fragment {
         mostSpentCat = (TextView) getView().findViewById(R.id.tvMostSpentCategory);
 
         String strStart = startDate.getText().toString(), strEnd = endDate.getText().toString();
-        Timestamp start = Timestamp.valueOf(strStart);
-        Timestamp end = Timestamp.valueOf(strEnd);
+        Timestamp start = (Timestamp) startDate.getText();
+        Timestamp end = (Timestamp) endDate.getText();
 
         dates.setText("Stats from "+ strStart +" to "+ strEnd);
         try (
                 Connection c = SQLInterface.getConnection(); /*automatically close()*/
                 PreparedStatement statement = c.prepareStatement(
-                        "SELECT SUM(amount) WHERE date >= ? AND date <= ?"
+                        "SELECT SUM(amount) WHERE transactiondate >= ? AND transactiondate <= ?;"
                 );
         ) {
 
             statement.setTimestamp(1, start);
             statement.setTimestamp(2, end);
 
-        } catch (Exception e) {
+            ResultSet rs = statement.executeQuery();
+            rs.next();
+            BigDecimal netbalance = rs.getBigDecimal("amount");
+            netBal.setText("₱"+String.format("%.2f",netbalance));
 
+
+        } catch (Exception e) {
+                e.printStackTrace();
         }
     }
 }
