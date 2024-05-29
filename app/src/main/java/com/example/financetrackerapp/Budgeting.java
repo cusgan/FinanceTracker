@@ -3,6 +3,8 @@ package com.example.financetrackerapp;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -60,6 +62,20 @@ public class Budgeting extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_budgeting, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         total = (TextView) getView().findViewById(R.id.tvTotalBudgetAll);
         food = (TextView) getView().findViewById(R.id.tvFoodBudget);
         house = (TextView) getView().findViewById(R.id.tvHousingBudget);
@@ -81,13 +97,5 @@ public class Budgeting extends Fragment {
                 startActivity(intent);
             }
         });
-
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_budgeting, container, false);
     }
 }

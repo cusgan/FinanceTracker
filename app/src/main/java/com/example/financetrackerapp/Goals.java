@@ -1,11 +1,13 @@
 package com.example.financetrackerapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -69,17 +70,7 @@ public class Goals extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        btnAddGoal = (Button) getView().findViewById(R.id.btnAddGoalPage);
-        btnAddGoal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(
-                        v.getContext(),
-                        AddGoal.class
-                );
-                startActivity(intent);
-            }
-        });
+
     }
 
     @Override
@@ -92,6 +83,18 @@ public class Goals extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        btnAddGoal = (Button) getView().findViewById(R.id.btnAddGoalPageAAA);
+        btnAddGoal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(
+                        v.getContext(),
+                        AddGoal.class
+                );
+                startActivity(intent);
+            }
+        });
+
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.recycler_goals);
         GoalAdapter t = new GoalAdapter();
         rv.setAdapter(t);
@@ -133,20 +136,39 @@ class GoalAdapter extends RecyclerView.Adapter<GoalHolder>{
         Goal goal = list.get(index);
         if(holder.tname!=null) holder.tname.setText(goal.name);
         holder.progress.setText(String.format("%.2f",goal.balance));
-        int percent = (int)Math.round(10.0*(goal.balance/goal.amount));
+        int percent = (int)Math.round(100.0*(goal.balance/goal.amount));
         holder.percent.setText(percent+"% reached");
         holder.target.setText(String.format("%.2f",goal.amount));
         holder.sex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLInterface.deleteGoal(goal.id);
-                UserData.goals.remove(index);
-                Goals.ga.notifyDataSetChanged();
-                MainPage.makeToast("Deleted Goal: "+goal.name);
-                // realod
-                Goals ga = Goals.newInstance(null,null);
-                MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,ga );
-            }
+                AlertDialog.Builder builder = new AlertDialog.Builder(theview.getContext());
+// Add the buttons.
+                builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SQLInterface.deleteGoal(goal.id);
+                        UserData.goals.remove(index);
+                        Goals.ga.notifyDataSetChanged();
+                        MainPage.makeToast("Deleted Goal: "+goal.name);
+                        // realod
+                        Goals ga = Goals.newInstance(null,null);
+                        MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,ga );
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //cancel deletion
+                    }
+                });
+// Set other dialog properties.
+                builder.setMessage("Are you sure you would like to delete "+UserData.goals.get(index).name+"? ")
+                        .setTitle("Confirm Goal Deletion");
+
+// Create the AlertDialog.
+                AlertDialog dialog = builder.create();
+                dialog.show();
+        };
+
         });
     }
 
