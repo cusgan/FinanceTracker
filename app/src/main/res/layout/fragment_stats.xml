@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/deep_green"
+    tools:context=".TransactionHistory">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:cardBackgroundColor="@color/deep_green"
+                app:cardElevation="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center"
+                        android:text="Statistics"
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/walletTemplate"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center"
+                        android:text="Choose Date"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/inter_medium"
+                                android:gravity="center"
+                                android:text="Start"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/txtStatStart"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ems="12"
+                                android:fontFamily="@font/inter_medium"
+                                android:hint="@string/default_date"
+                                android:inputType="date"
+                                android:textColorHighlight="@color/vivid_yellow"
+                                android:textColorLink="@color/vivid_yellow"
+                                android:textSize="16sp" />
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView21"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/inter_medium"
+                                android:gravity="center"
+                                android:text="End"
+                                android:textSize="14sp" />
+
+                            <EditText
+                                android:id="@+id/txtStatEnd"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:ems="12"
+                                android:fontFamily="@font/inter_medium"
+                                android:hint="@string/default_date"
+                                android:inputType="date"
+                                android:textColorHighlight="@color/vivid_yellow"
+                                android:textColorLink="@color/vivid_yellow"
+                                android:textSize="16sp" />
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="30dp"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvStatsFromTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:text="Stats from 00/00/00 to 00/00/00" />
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardElevation="0dp"
+                        app:contentPadding="10dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_medium"
+                                android:gravity="center"
+                                android:paddingHorizontal="10dp"
+                                android:text="Net Balance" />
+
+                            <TextView
+                                android:id="@+id/tvStatNetBal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="₱700.00"
+                                android:textColor="@color/black"
+                                android:textSize="24sp" />
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="#AAEABD"
+                            app:cardCornerRadius="30dp"
+                            app:contentPadding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="Net Income" />
+
+                                <TextView
+                                    android:id="@+id/tvNetIncome"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="₱500.00"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="#F48179"
+                            app:cardCornerRadius="30dp"
+                            app:contentPadding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/textView13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="Net Expenses" />
+
+                                <TextView
+                                    android:id="@+id/tvNetExpenses"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="₱1025.25"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="@color/emerald"
+                            app:cardCornerRadius="30dp"
+                            app:contentPadding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/textView12"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="Total Income" />
+
+                                <TextView
+                                    android:id="@+id/tvTotalIncome"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="₱500.00"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:layout_weight="1"
+                            app:cardBackgroundColor="#F44336"
+                            app:cardCornerRadius="30dp"
+                            app:contentPadding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/textView13"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:text="Total Expenses" />
+
+                                <TextView
+                                    android:id="@+id/tvTotalExpenses"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="₱1025.25"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:cardElevation="0dp"
+                        app:contentPadding="10dp">
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <TextView
+                                    android:id="@+id/textView18"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="10dp"
+                                    android:text="Largest Expense" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/tvLargestExpense"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/inter_semibold"
+                                        android:text="₱700.00"
+                                        android:textColor="@color/black"
+                                        android:textSize="24sp" />
+
+                                    <TextView
+                                        android:id="@+id/tvLargeExpenseName"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/inter_medium"
+                                        android:text="Expense Title" />
+                                </LinearLayout>
+
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent" >
+
+                                <TextView
+                                    android:id="@+id/textView18"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/inter_medium"
+                                    android:gravity="center"
+                                    android:paddingHorizontal="10dp"
+                                    android:text="Most Spent" />
+
+                                <TextView
+                                    android:id="@+id/tvMostSpentCategory"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:text="Category"
+                                    android:textColor="@color/black"
+                                    android:textSize="20sp" />
+                            </TableRow>
+                        </TableLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>
