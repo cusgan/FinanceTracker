@@ -23,12 +23,16 @@ public class InviteToWallet extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     String email = inputemail.getText().toString();
-                    SQLInterface.sendInvite(
+                    int i =SQLInterface.sendInvite(
                             UserData.wallets.get(UserData.selectedwallet).id,
                             email,
                             UserData.name,
                             UserData.wallets.get(UserData.selectedwallet).name);
-                } catch (Exception e){}
+                    if(i<=0)
+                        throw new Exception("No user found");
+                } catch (Exception e){
+                    MainPage.makeToast("Invite not sent: User not found");
+                }
                 finish();
             }
         });
