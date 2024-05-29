@@ -1,5 +1,7 @@
 package com.example.financetrackerapp;
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -20,6 +22,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.internal.ContextUtils;
 
 import java.util.ArrayList;
 
@@ -120,7 +124,7 @@ public class Wallets extends Fragment {
         tvWalletCount.setText("from "+UserData.wallets.size()+ " wallet"+s);
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.walletRecycler);
         WalletAdapter walletAdapter = new WalletAdapter();
-        if(!UserData.recyclers.contains(walletAdapter))UserData.recyclers.add(walletAdapter);
+//        if(!UserData.recyclers.contains(walletAdapter))UserData.recyclers.add(walletAdapter);
         rv.setAdapter(walletAdapter);
         Wallets.wa = walletAdapter;
         View v = getView().findViewById(R.id.walletContainer);
@@ -176,9 +180,13 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
                     public void onClick(DialogInterface dialog, int id) {
                         // User taps OK button.
                         SQLInterface.deleteWallet(UserData.wallets.get(index).id);
-
-                        SQLInterface.getUserData(UserData.userid);
+                        wallets.remove(index);
                         Wallets.wa.notifyDataSetChanged();
+                        // realod
+                        Wallets n = Wallets.newInstance(null,null);
+                        MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,n );
+
+                        //
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {

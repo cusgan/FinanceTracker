@@ -358,7 +358,7 @@ public class SQLInterface {
                 res = statement5.executeQuery(""+
                         "SELECT * " +
                         "FROM tblinvite " +
-                        "WHERE userid="+userid+";"
+                        "WHERE userid="+userid+" AND isaccept=false;"
                 );
                 while(res.next()){
                     Invite invite = new Invite();
@@ -382,9 +382,9 @@ public class SQLInterface {
                     invite.userid = res.getInt("userid");
                     UserData.notifs.add(invite);
                 }
-                for(int i=0;i<UserData.recyclers.size(); i++){
-                    UserData.recyclers.get(i).notifyDataSetChanged();
-                }
+//                for(int i=0;i<UserData.recyclers.size(); i++){
+//                    UserData.recyclers.get(i).notifyDataSetChanged();
+//                }
 
             } catch(SQLException e){
                 e.printStackTrace();
@@ -447,6 +447,21 @@ public class SQLInterface {
                 Statement statement = c.createStatement();
                 statement.execute(""+
                         "DELETE FROM tblnotif WHERE notifid="+notifid+";"
+                );
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+    }
+    public static void deleteInvite(int inviteid){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute(""+
+                        "DELETE FROM tblinvite WHERE inviteid="+inviteid+";"
                 );
             } catch(SQLException e){
                 e.printStackTrace();

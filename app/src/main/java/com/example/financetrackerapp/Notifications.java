@@ -23,6 +23,8 @@ import java.util.ArrayList;
  * create an instance of this fragment.
  */
 public class Notifications extends Fragment {
+    public static InvAdapter ia;
+    public static NotifAdapter na;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,13 +78,31 @@ public class Notifications extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.recyclerNotifs);
         NotifAdapter na = new NotifAdapter();
+        Notifications.na = na;
         rv.setAdapter(na);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        if(!UserData.recyclers.contains(na))UserData.recyclers.add(na);
 
         RecyclerView rv2 = (RecyclerView) getView().findViewById(R.id.recyclerInvites);
         InvAdapter na2 = new InvAdapter();
-        if(!UserData.recyclers.contains(na2))UserData.recyclers.add(na2);
+
+        Notifications.ia = na2;
+        rv2.setAdapter(na2);
+        rv2.setLayoutManager(new LinearLayoutManager(rv2.getContext()));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        RecyclerView rv = (RecyclerView) getView().findViewById(R.id.recyclerNotifs);
+        NotifAdapter na = new NotifAdapter();
+        Notifications.na = na;
+        rv.setAdapter(na);
+        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+
+        RecyclerView rv2 = (RecyclerView) getView().findViewById(R.id.recyclerInvites);
+        InvAdapter na2 = new InvAdapter();
+
+        Notifications.ia = na2;
         rv2.setAdapter(na2);
         rv2.setLayoutManager(new LinearLayoutManager(rv2.getContext()));
     }
@@ -126,6 +146,9 @@ class NotifAdapter extends RecyclerView.Adapter<NotifHolder>{
             public void onClick(View v) {
                 SQLInterface.deleteNotif(notifID);
                 SQLInterface.getUserData(UserData.userid);
+                Notifications.na.notifyDataSetChanged();
+                Notifications n = Notifications.newInstance(null,null);
+                MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,n );
             }
         });
     }
@@ -174,15 +197,24 @@ class InvAdapter extends RecyclerView.Adapter<InvHolder>{
             @Override
             public void onClick(View v) {
                 SQLInterface.acceptInvite(notifID);
+                UserData.invites.remove(index);
                 SQLInterface.getUserData(UserData.userid);
+                Notifications.ia.notifyDataSetChanged();
+                Notifications n = Notifications.newInstance(null,null);
+                MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,n );
+                MainPage.makeToast("Invitation has been added to your wallet.");
             }
         });
-        if(holder.no!=null)
         holder.no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SQLInterface.deleteNotif(notifID);
+                SQLInterface.deleteInvite(notifID);
+                UserData.invites.remove(index);
                 SQLInterface.getUserData(UserData.userid);
+                Notifications.ia.notifyDataSetChanged();
+                Notifications n = Notifications.newInstance(null,null);
+                MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,n );
+                MainPage.makeToast("Declined Invitation.");
             }
         });
     }
