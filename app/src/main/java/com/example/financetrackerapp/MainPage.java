@@ -21,15 +21,13 @@ public class MainPage extends AppCompatActivity {
         setContentView(R.layout.activity_main_page);
         SQLInterface.getUserData(UserData.userid);
 
+        //default fragment is home page
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .setReorderingAllowed(true)
                     .add(R.id.frameMainPage, HomePage.class, null)
                     .commit();
         }
-
-
-
 
         btnHome = (Button) findViewById(R.id.btnHome);
         btnHome.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +49,17 @@ public class MainPage extends AppCompatActivity {
                         AddTransaction.class
                 );
                 startActivity(intent);
+            }
+        });
+
+        btnHistory = (Button) findViewById(R.id.btnHistory);
+        btnHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.frameMainPage, TransactionHistory.class, null)
+                        .addToBackStack(null).commit();
             }
         });
     }

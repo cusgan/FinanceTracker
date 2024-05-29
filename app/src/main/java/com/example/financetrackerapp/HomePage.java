@@ -1,14 +1,19 @@
 package com.example.financetrackerapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 /**
@@ -22,6 +27,10 @@ public class HomePage extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
+    ImageButton btnNotifs, btnProfile;
+    Button btnWallets;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -73,15 +82,49 @@ public class HomePage extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
+        AppCompatActivity activity = (AppCompatActivity) view.getContext();
+
         tvBalance = (TextView) getView().findViewById(R.id.tvTotalBalance);
         tvIncome = (TextView) getView().findViewById(R.id.tvIncome);
         tvExpenses = (TextView) getView().findViewById(R.id.tvExpenses);
         tvWelcome = (TextView) getView().findViewById(R.id.tvWelcome);
 
-        tvWelcome.setText("Welcome, "+UserData.name);
-        tvBalance.setText("₱"+UserData.totalBalance);
-        tvIncome.setText("₱"+UserData.totalIncome);
-        tvExpenses.setText("₱"+UserData.totalExpenses);
+        tvWelcome.setText("Welcome, " + UserData.name);
+        tvBalance.setText("₱" + String.format("%.2f", UserData.totalBalance));
+        tvIncome.setText("₱" + String.format("%.2f", UserData.totalIncome));
+        tvExpenses.setText("₱" + String.format("%.2f", UserData.totalExpenses));
+
+        btnNotifs = (ImageButton) getView().findViewById(R.id.btnNotifs);
+        btnNotifs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameMainPage, Notifications.class, null)
+                        .addToBackStack(null).commit();
+            }
+        });
+
+        btnProfile = (ImageButton) getView().findViewById(R.id.btnProfile);
+        btnProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameMainPage, Profile.class, null)
+                        .addToBackStack(null).commit();
+            }
+        });
+
+        btnWallets = (Button) getView().findViewById(R.id.btnViewWallets);
+        btnWallets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameMainPage, Wallets.class, null)
+                        .addToBackStack(null).commit();
+            }
+        });
     }
 }

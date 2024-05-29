@@ -37,7 +37,7 @@
 
                     <TextView
                         android:id="@+id/tvWelcome"
-                        android:layout_width="233dp"
+                        android:layout_width="260dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
                         android:text="Welcome, user"
@@ -45,21 +45,24 @@
                         android:textSize="20sp" />
 
                     <ImageButton
-                        android:id="@+id/imageButton"
+                        android:id="@+id/btnNotifs"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="#00FFFFFF"
-                        android:padding="15dp"
+                        android:backgroundTint="#00FFFFFF"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
                         android:src="@drawable/baseline_notifications_24" />
 
                     <ImageButton
-                        android:id="@+id/imageButton2"
-                        android:layout_width="53dp"
+                        android:id="@+id/btnProfile"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:background="#00FFFFFF"
-                        android:src="@drawable/bottom_btn3" />
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:src="@drawable/baseline_person_24" />
 
                 </LinearLayout>
 

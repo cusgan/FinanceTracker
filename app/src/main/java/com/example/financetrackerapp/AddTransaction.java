@@ -12,7 +12,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddTransaction extends AppCompatActivity {
-    Button btnSaveTransaction;
+    Button btnSaveTransaction, btnCancelTRansaction;
     EditText etNTDesc, etNTAmount;
     RadioButton rbIncome;
     Spinner categorySpinner, walletSpinner;
@@ -61,6 +61,14 @@ public class AddTransaction extends AppCompatActivity {
                 } catch (Exception e){
                     toast("Could not add new Transaction.");
                 }
+            }
+        });
+
+        btnCancelTRansaction = (Button) findViewById(R.id.btnCancelTrans);
+        btnCancelTRansaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
