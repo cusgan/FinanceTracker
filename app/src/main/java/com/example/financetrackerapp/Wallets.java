@@ -6,11 +6,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -79,6 +81,11 @@ public class Wallets extends Fragment {
         String s = "";
         if(UserData.wallets.size()>1) s="s";
         tvWalletCount.setText("from "+UserData.wallets.size()+ " wallet"+s);
+        RecyclerView rv = (RecyclerView) getView().findViewById(R.id.walletRecycler);
+        WalletAdapter walletAdapter = new WalletAdapter();
+        rv.setAdapter(walletAdapter);
+        View v = getView().findViewById(R.id.walletContainer);
+        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
     }
 
     @Override
@@ -91,6 +98,11 @@ public class Wallets extends Fragment {
         String s = "";
         if(UserData.wallets.size()>1) s="s";
         tvWalletCount.setText("from "+UserData.wallets.size()+ " wallet"+s);
+        RecyclerView rv = (RecyclerView) getView().findViewById(R.id.walletRecycler);
+        WalletAdapter walletAdapter = new WalletAdapter();
+        rv.setAdapter(walletAdapter);
+        View v = getView().findViewById(R.id.walletContainer);
+        rv.setLayoutManager(new LinearLayoutManager(v.getContext()));
     }
 }
 class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
@@ -103,7 +115,7 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
                 = parent.getContext();
         LayoutInflater inflater
                 = LayoutInflater.from(context);
-        View theview = inflater.inflate(R.layout.fragment_wallets, parent, false);
+        View theview = inflater.inflate(R.layout.recycler_wallet, parent, false);
 
         WalletHolder viewHolder
                 = new WalletHolder(theview);

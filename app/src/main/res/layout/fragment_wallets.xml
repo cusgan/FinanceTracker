@@ -104,12 +104,20 @@ tools:context=".TransactionHistory">
 
         </androidx.cardview.widget.CardView>
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/walletRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/walletTemplate"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp"
+            android:visibility="gone"
             app:cardCornerRadius="30dp"
-            app:contentPadding="15dp">
+            app:contentPadding="15dp"
+            tools:visibility="gone">
 
             <LinearLayout
                 android:id="@+id/walletContainer"
