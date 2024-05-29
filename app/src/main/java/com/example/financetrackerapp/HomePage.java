@@ -101,7 +101,7 @@ public class HomePage extends Fragment {
         tvBudgetTotal.setText("₱" + String.format("%.2f", UserData.monthlyBudget));
         tvBudgetSpent.setText("₱" + String.format("%.2f", UserData.budgetSpent)+" spent");
         float percnt = -1;
-        percnt = 10.0f*((float)UserData.budgetSpent/(float)UserData.monthlyBudget+0.1f);
+        percnt = 100.0f*((float)UserData.budgetSpent/(float)UserData.monthlyBudget+0.1f);
         if(Float.isNaN(percnt))
             tvSpentPercent.setText("- - -");
         else

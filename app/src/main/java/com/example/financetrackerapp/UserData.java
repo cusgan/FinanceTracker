@@ -21,6 +21,7 @@ public class UserData {
         }
         return null;
     }
+    public static Budget budget = new Budget();
 }
 class Wallet{
     public Wallet(int id, String name, float balance, int userid1,int userid2){
@@ -52,4 +53,8 @@ class Notif{
 class Invite{
     public int id,walletid,userid;
     public String text;
+}
+class Budget{
+    public float total=0;
+    public float[] category = new float[8];
 }

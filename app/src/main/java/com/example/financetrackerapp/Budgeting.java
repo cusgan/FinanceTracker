@@ -27,6 +27,7 @@ public class Budgeting extends Fragment {
     private static final String ARG_PARAM2 = "param2";
     Button btnEditBudget;
     TextView total, food, house, transpo, util, health, savings, personal, misc;
+    TextView tvs[];
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -85,6 +86,13 @@ public class Budgeting extends Fragment {
         savings = (TextView) getView().findViewById(R.id.tvSavingsBudget);
         personal = (TextView) getView().findViewById(R.id.tvPersonalBudget);
         misc = (TextView) getView().findViewById(R.id.tvMiscBudget);
+        tvs = new TextView[]{
+                food,house,transpo,util,health,savings,personal,misc
+        };
+        total.setText("₱"+UserData.budget.total);
+        for(int i=0;i<8;i++){
+            tvs[i].setText("₱"+UserData.budget.category[i]);
+        }
 
         btnEditBudget = (Button) getView().findViewById(R.id.btnEditBudget);
         btnEditBudget.setOnClickListener(new View.OnClickListener() {
@@ -92,10 +100,19 @@ public class Budgeting extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(
                         v.getContext(),
-                        Budgeting.class
+                        EditBudget.class
                 );
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        total.setText("₱"+UserData.budget.total);
+        for(int i=0;i<8;i++){
+            tvs[i].setText("₱"+UserData.budget.category[i]);
+        }
     }
 }

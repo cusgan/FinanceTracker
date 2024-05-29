@@ -135,10 +135,10 @@ class GoalAdapter extends RecyclerView.Adapter<GoalHolder>{
         final int index = holder.getAdapterPosition();
         Goal goal = list.get(index);
         if(holder.tname!=null) holder.tname.setText(goal.name);
-        holder.progress.setText(String.format("%.2f",goal.balance));
+        holder.progress.setText("₱"+String.format("%.2f",goal.balance));
         int percent = (int)Math.round(100.0*(goal.balance/goal.amount));
         holder.percent.setText(percent+"% reached");
-        holder.target.setText(String.format("%.2f",goal.amount));
+        holder.target.setText("out of ₱"+String.format("%.2f",goal.amount));
         holder.sex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

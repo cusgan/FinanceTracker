@@ -92,14 +92,12 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/walletTemplate"
+                android:id="@+id/budgettsss"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
-                android:visibility="gone"
                 app:cardCornerRadius="30dp"
-                app:contentPadding="20dp"
-                tools:visibility="visible">
+                app:contentPadding="20dp">
 
                 <TableLayout
                     android:layout_width="match_parent"

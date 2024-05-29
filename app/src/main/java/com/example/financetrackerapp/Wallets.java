@@ -25,6 +25,10 @@ import android.widget.Toast;
 
 import com.google.android.material.internal.ContextUtils;
 
+import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 /**
@@ -154,8 +158,25 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
         final int index = holder.getAdapterPosition();
         holder.tvname.setText(wallets.get(index).name+" ");
         holder.tvbal.setText("₱"+wallets.get(index).balance);
-        if(wallets.get(index).userid2 != 0)
-            holder.tvshared.setText("(Shared Wallet.)");
+
+        if(wallets.get(index).userid2 != 0){
+//            try (
+//                    Connection c = SQLInterface.getConnection(); /*automatically close()*/
+//                    PreparedStatement statement = c.prepareStatement(
+//                            "SELECT name FROM tbluser WHERE userid = ?;"
+//                    );
+//            ) {
+//                statement.setInt(1, UserData.userid);
+//
+//                ResultSet rs = statement.executeQuery();
+//                rs.next();
+//                holder.tvshared.setText("Shared with " + rs.getString(1));
+//
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+                holder.tvshared.setText("Shared Wallet");
+        }
         else
             holder.tvshared.setText(" ");
 

@@ -6,7 +6,7 @@
     <string name="default_wallet">My Wallet</string>
     <string name="default_transaction">My Transaction</string>
     <string name="default_goal">My Goal</string>
-    <string name="default_date">03/07/24</string>
+    <string name="default_date">YYYY/MM/DD</string>
     <string-array name="categories_array">
         <item>Food</item>
         <item>Housing</item>

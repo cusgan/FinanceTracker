@@ -264,10 +264,12 @@ public class SQLInterface {
                 statement2.execute("" +
                         "UPDATE tblwallet SET balance = (balance + "+amount+") " +
                         "WHERE walletid = "+walletid+";");
-                Statement statement3 = c.createStatement();
-                statement3.execute("" +
-                        "UPDATE tbluser SET spent = (spent - "+amount+") " +
-                        "WHERE userid = "+userid+";");
+                if(amount<0){
+                    Statement statement3 = c.createStatement();
+                    statement3.execute("" +
+                            "UPDATE tbluser SET spent = (spent - " + amount + ") " +
+                            "WHERE userid = " + userid + ";");
+                }
             } catch(SQLException e){
                 e.printStackTrace();
             }

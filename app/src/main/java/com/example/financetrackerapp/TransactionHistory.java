@@ -108,6 +108,8 @@ class TransAdapter extends RecyclerView.Adapter<TransHolder>{
         final int index = holder.getAdapterPosition();
         Transaction transaction = UserData.transactions.get(index);
         holder.amountDisplay.setText(String.format("%.2f",transaction.amount));
+        holder.walletDisplay.setText("- - -");
+        if(UserData.getWallet(transaction.walletid) !=null)
         holder.walletDisplay.setText(UserData.getWallet(transaction.walletid).name);
         holder.descDisplay.setText(""+transaction.description);
         holder.deetsDisplay.setText(""+transaction.category + " - "+transaction.datetime.toString());

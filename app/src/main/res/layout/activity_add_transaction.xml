@@ -148,9 +148,10 @@
 
                         <TextView
                             android:id="@+id/textView9"
-                            android:layout_width="64dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="60dp"
+                            android:layout_height="24dp"
                             android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
                             android:text="Wallet"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -172,6 +173,7 @@
                             android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
                             android:text="Category"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
@@ -195,6 +197,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/inter_medium"
+                            android:gravity="center"
                             android:text="Description"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
