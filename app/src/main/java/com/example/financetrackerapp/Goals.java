@@ -127,6 +127,7 @@ class GoalAdapter extends RecyclerView.Adapter<GoalHolder>{
                 SQLInterface.deleteGoal(goal.id);
                 UserData.goals.remove(index);
                 Goals.ga.notifyDataSetChanged();
+                MainPage.makeToast("Deleted Goal: "+goal.name);
                 // realod
                 Goals ga = Goals.newInstance(null,null);
                 MainPage.getfr().beginTransaction().replace(R.id.frameMainPage,ga );
