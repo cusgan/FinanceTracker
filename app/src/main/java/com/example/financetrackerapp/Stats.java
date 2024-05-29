@@ -85,8 +85,8 @@ public class Stats extends Fragment {
                 );
                 ) {
 
-            statement.setDate(1, start);
-            statement.setDate(2, end);
+            statement.setTimestamp(1, start);
+            statement.setTimestamp(2, end);
 
         } catch (Exception e) {
 
