@@ -33,6 +33,7 @@ public class EditBudget extends AppCompatActivity {
                 food,house,transpo,util,health,savings,personal,misc
         };
         for(int i=0; i<8; i++){
+            if(UserData.budget.category[i]>0)
             ets[i].setText(""+UserData.budget.category[i]);
         }
         //TODO: stringformat and hints sa edit budget

@@ -91,7 +91,7 @@ public class Budgeting extends Fragment {
         };
         total.setText("₱"+UserData.budget.total);
         for(int i=0;i<8;i++){
-            tvs[i].setText("₱"+UserData.budget.category[i]);
+                tvs[i].setText("₱"+String.format("%.2f",UserData.budget.category[i]));
         }
 
         btnEditBudget = (Button) getView().findViewById(R.id.btnEditBudget);
