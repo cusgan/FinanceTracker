@@ -78,9 +78,11 @@ public class Notifications extends Fragment {
         NotifAdapter na = new NotifAdapter();
         rv.setAdapter(na);
         rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+        if(!UserData.recyclers.contains(na))UserData.recyclers.add(na);
 
         RecyclerView rv2 = (RecyclerView) getView().findViewById(R.id.recyclerInvites);
         InvAdapter na2 = new InvAdapter();
+        if(!UserData.recyclers.contains(na2))UserData.recyclers.add(na2);
         rv2.setAdapter(na2);
         rv2.setLayoutManager(new LinearLayoutManager(rv2.getContext()));
     }
@@ -143,7 +145,7 @@ class InvHolder extends RecyclerView.ViewHolder {
         super(itemView);
         tvtext = (TextView) itemView.findViewById(R.id.tvInvBody);
         yes = (Button) itemView.findViewById(R.id.btnAcceptWallet);
-        no = (Button) itemView.findViewById(R.id.btnDeleteWallet);
+        no = (Button) itemView.findViewById(R.id.btnRejectWallet);
     }
 }
 class InvAdapter extends RecyclerView.Adapter<InvHolder>{

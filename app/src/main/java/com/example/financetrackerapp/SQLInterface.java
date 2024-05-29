@@ -1,5 +1,7 @@
 package com.example.financetrackerapp;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -379,6 +381,9 @@ public class SQLInterface {
                     invite.text = res.getString("text");
                     invite.userid = res.getInt("userid");
                     UserData.notifs.add(invite);
+                }
+                for(int i=0;i<UserData.recyclers.size(); i++){
+                    UserData.recyclers.get(i).notifyDataSetChanged();
                 }
 
             } catch(SQLException e){

@@ -120,6 +120,7 @@ public class Wallets extends Fragment {
         tvWalletCount.setText("from "+UserData.wallets.size()+ " wallet"+s);
         RecyclerView rv = (RecyclerView) getView().findViewById(R.id.walletRecycler);
         WalletAdapter walletAdapter = new WalletAdapter();
+        if(!UserData.recyclers.contains(walletAdapter))UserData.recyclers.add(walletAdapter);
         rv.setAdapter(walletAdapter);
         Wallets.wa = walletAdapter;
         View v = getView().findViewById(R.id.walletContainer);

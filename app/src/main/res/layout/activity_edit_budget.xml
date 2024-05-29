@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tvNTWallet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/deep_green"
+    tools:context=".AddTransaction">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="30dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="30dp"
+        tools:layout_editor_absoluteY="30dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="30dp"
+            app:contentPadding="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="338dp"
+                        android:layout_height="55dp"
+                        android:fontFamily="@font/inter_bold"
+                        android:gravity="center"
+                        android:text="Edit Budget"
+                        android:textColor="@color/black"
+                        android:textSize="24sp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Total Budget"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/txtTotalBudgetPlan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:fontFamily="@font/inter_medium"
+                    android:inputType="numberDecimal"
+                    android:text="0.00"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/vivid_yellow"
+                    android:textColorLink="@color/vivid_yellow" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/textView17"
+                            android:layout_width="134dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_semibold"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="Category"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/textView19"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_semibold"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="5dp"
+                            android:text="Allocation"
+                            android:textColor="@color/black"
+                            android:textSize="14sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="89dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Food"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditFood"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Housing"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditHousing"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Transport"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditTranspo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Utilities"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditUtil"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Healthcare"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditHealth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Savings"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditSavings"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Personal Care"
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditPersonal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/textView20"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Misc."
+                            android:textSize="16sp" />
+
+                        <EditText
+                            android:id="@+id/txtEditMisc"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ems="8"
+                            android:fontFamily="@font/inter_medium"
+                            android:inputType="numberDecimal"
+                            android:text="0.00"
+                            android:textSize="16sp" />
+
+                    </TableRow>
+
+                </TableLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="15dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/btnConfirmBudgetEdit"
+                        android:layout_width="173dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/inter_bold"
+                        android:text="Confirm Changes"
+                        android:textSize="16sp"
+                        app:cornerRadius="180dp" />
+
+                    <Button
+                        android:id="@+id/btnCancelBudget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/inter_semibold"
+                        android:insetTop="0dp"
+                        android:insetBottom="0dp"
+                        android:text="Cancel"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:cornerRadius="0dp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
