@@ -15,6 +15,12 @@
         android:theme="@style/Theme.FinanceTrackerApp"
         tools:targetApi="31">
         <activity
+            android:name=".Goals"
+            android:exported="false" />
+        <activity
+            android:name=".AddGoal"
+            android:exported="false" />
+        <activity
             android:name=".InviteToWallet"
             android:exported="false" />
         <activity

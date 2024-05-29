@@ -30,7 +30,7 @@ public class HomePage extends Fragment {
 
     TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
     ImageButton btnNotifs, btnProfile;
-    Button btnWallets;
+    Button btnWallets, btnGoals;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -123,6 +123,18 @@ public class HomePage extends Fragment {
                 activity.getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.frameMainPage, Wallets.class, null)
+                        .addToBackStack(null).commit();
+            }
+        });
+
+
+        btnGoals = (Button) getView().findViewById(R.id.btnViewGoals);
+        btnGoals.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.getSupportFragmentManager()
+                        .beginTransaction()
+                        .replace(R.id.frameMainPage, Goals.class, null)
                         .addToBackStack(null).commit();
             }
         });

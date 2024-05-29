@@ -40,7 +40,7 @@
                         android:layout_height="61dp"
                         android:fontFamily="@font/inter_bold"
                         android:gravity="center"
-                        android:text="New Wallet"
+                        android:text="New Saving Goal"
                         android:textColor="@color/black"
                         android:textSize="24sp" />
 
@@ -51,15 +51,36 @@
                     android:layout_height="13dp" />
 
                 <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="Goal Title"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    android:id="@+id/txtGoalTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/black"
+                    android:ems="10"
+                    android:fontFamily="@font/inter_medium"
+                    android:inputType="text"
+                    android:text="My Saving Goal"
+                    android:textColor="@color/black"
+                    android:textColorHighlight="@color/vivid_yellow"
+                    android:textColorLink="@color/vivid_yellow" />
+
+                <TextView
                     android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Initial Balance"
+                    android:text="Target Savings"
                     android:textColor="@color/black" />
 
                 <EditText
-                    android:id="@+id/txtWalletInitBal"
+                    android:id="@+id/txtGoalTarget"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/black"
@@ -72,22 +93,22 @@
                     android:textColorLink="@color/vivid_yellow" />
 
                 <TextView
-                    android:id="@+id/textView16"
+                    android:id="@+id/textView15"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_medium"
-                    android:text="Wallet Name"
+                    android:text="Initial Savings"
                     android:textColor="@color/black" />
 
                 <EditText
-                    android:id="@+id/txtWalletName"
+                    android:id="@+id/txtGoalInit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/black"
                     android:ems="10"
                     android:fontFamily="@font/inter_medium"
-                    android:inputType="text"
-                    android:text="My Wallet"
+                    android:inputType="numberDecimal"
+                    android:text="0.00"
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/vivid_yellow"
                     android:textColorLink="@color/vivid_yellow" />
@@ -97,11 +118,11 @@
                     android:layout_height="30dp" />
 
                 <Button
-                    android:id="@+id/btnAddWallet"
+                    android:id="@+id/btnAddGoal"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:fontFamily="@font/inter_bold"
-                    android:text="Add Wallet"
+                    android:text="Add Goal"
                     android:textSize="16sp"
                     app:cornerRadius="180dp" />
 

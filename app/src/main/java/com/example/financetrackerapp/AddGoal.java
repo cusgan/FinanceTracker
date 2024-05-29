@@ -6,15 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class AddWallet extends AppCompatActivity {
+public class AddGoal extends AppCompatActivity {
     Button btnAdd, btnCancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_wallet);
+        setContentView(R.layout.activity_add_goal);
 
-        btnAdd = (Button) findViewById(R.id.btnAddWallet);
+        btnAdd = (Button) findViewById(R.id.btnAddGoal);
         btnCancel = (Button) findViewById(R.id.btnCancelGoal);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
