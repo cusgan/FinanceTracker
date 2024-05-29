@@ -35,10 +35,10 @@
                         android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_medium"
+                        android:fontFamily="@font/inter_bold"
                         android:text="Transaction History"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="20sp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -47,7 +47,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:cardCornerRadius="30dp"
-                app:contentPadding="15dp">
+                app:contentPadding="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,38 +55,48 @@
                     android:layout_margin="10dp"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tvWalletBal"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="+500.00 (minus if exp)"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvTrHistAmt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="+500.00"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+
+                        <TextView
+                            android:id="@+id/tvTrHistWallet"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
+                            android:fontFamily="@font/inter_medium"
+                            android:text="Primary Wallet"
+                            android:textColor="@color/mustard_yellow" />
+                    </LinearLayout>
 
                     <TextView
-                        android:id="@+id/tvWalletName"
+                        android:id="@+id/tvTrHistDesc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_medium"
                         android:text="Description"
+                        android:textColor="@color/black"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/tvWalletShared"
+                        android:id="@+id/tvTrHistDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_medium"
-                        android:text="Category" />
-
-                    <TextView
-                        android:id="@+id/textView15"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="Primary Wallet - May 29, 2024" />
+                        android:text="Category - May 29, 2024 6:30 PM" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
         </LinearLayout>
     </ScrollView>
 </FrameLayout>
