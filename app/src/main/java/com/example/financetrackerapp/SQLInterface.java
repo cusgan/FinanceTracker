@@ -460,36 +460,32 @@ public class SQLInterface {
         } catch (InterruptedException e) { e.printStackTrace();}
         return inviteid.get();
     }
-//    public static void acceptInvite(int inviteid){
-//        ExecutorService executor = Executors.newSingleThreadExecutor();
-//        AtomicInteger transid = new AtomicInteger(-1);
-//        executor.execute(()->{
-//            try(Connection c = getConnection()){
-//                Statement statement = c.createStatement();
-//                statement.execute(""+
-//                                "INSERT INTO " +
-//                                "tbltransaction (transactiondesc, category, amount, walletid,userid)" +
-//                                "values ('Goal: "+goalname+"','Goals',"+(-amount)+","+walletid+","+userid+")"
-//                        ,Statement.RETURN_GENERATED_KEYS);
-//                ResultSet generatedKeys = statement.getGeneratedKeys();
-//                if(generatedKeys.next())
-//                    transid.set(generatedKeys.getInt(1));
-//                else
-//                    throw new SQLException("No Key Obtained");
-//                Statement statement2 = c.createStatement();
-//                statement2.execute("" +
-//                        "UPDATE tblwallet SET balance = (balance - "+amount+") " +
-//                        "WHERE walletid = "+walletid+";");
-//                Statement statement3 = c.createStatement();
-//                statement3.execute("" +
-//                        "UPDATE tblgoal SET balance = (balance + "+amount+") " +
-//                        "WHERE goalid = "+goalid+";");
-//            } catch(SQLException e){
-//                e.printStackTrace();
-//            }
-//        });
-//        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
-//        } catch (InterruptedException e) { e.printStackTrace();}
-//        return transid.get();
-//    }
+    public static void acceptInvite(int inviteid){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute("" +
+                                "UPDATE tblinvite SET isaccept = 1 WHERE inviteid="+inviteid+";"
+                        ,Statement.RETURN_GENERATED_KEYS);
+                Statement statement2 = c.createStatement();
+                ResultSet res = statement2.executeQuery("" +
+                        "SELECT * FROM tblinvite WHERE inviteid ="+inviteid);
+                int userid=-1, walletid=-1;
+                if(res.next()){
+                    userid = res.getInt("userid");
+                    walletid = res.getInt("walletid");
+                }
+                Statement statement3 = c.createStatement();
+                statement3.execute("" +
+                        "UPDATE tblwallet SET userid2 = "+userid+" " +
+                        "WHERE walletid="+walletid+";");
+
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+    }
 }
