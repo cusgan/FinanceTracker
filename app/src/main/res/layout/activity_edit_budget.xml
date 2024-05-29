@@ -61,8 +61,8 @@
                     android:backgroundTint="@color/black"
                     android:ems="10"
                     android:fontFamily="@font/inter_medium"
+                    android:hint="@string/default_value"
                     android:inputType="numberDecimal"
-                    android:text="0.00"
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/vivid_yellow"
                     android:textColorLink="@color/vivid_yellow" />
@@ -122,8 +122,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
@@ -147,8 +148,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
@@ -172,8 +174,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
@@ -197,8 +200,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
@@ -222,8 +226,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
@@ -247,8 +252,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
@@ -272,8 +278,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
@@ -297,8 +304,9 @@
                             android:layout_height="wrap_content"
                             android:ems="8"
                             android:fontFamily="@font/inter_medium"
+                            android:hint="@string/default_value"
+
                             android:inputType="numberDecimal"
-                            android:text="0.00"
                             android:textSize="16sp" />
 
                     </TableRow>
