@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class UserData {
     public static int selectedwallet=0;
+    public static int selectedGoal=0;
     public static boolean debug = false;
     public static int accid,userid;
     public static float totalBalance,totalIncome,totalExpenses, monthlyBudget, budgetSpent;

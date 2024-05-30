@@ -139,6 +139,17 @@ class GoalAdapter extends RecyclerView.Adapter<GoalHolder>{
         int percent = (int)Math.round(100.0*(goal.balance/goal.amount));
         holder.percent.setText(percent+"% reached");
         holder.target.setText("out of ₱"+String.format("%.2f",goal.amount));
+        holder.add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserData.selectedGoal = index;
+                Intent intent = new Intent(
+                        v.getContext(),
+                        AddToGoal.class
+                );
+                v.getContext().startActivity(intent);
+            }
+        });
         holder.sex.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -179,7 +190,7 @@ class GoalAdapter extends RecyclerView.Adapter<GoalHolder>{
 }
 class GoalHolder extends RecyclerView.ViewHolder{
     TextView tname, progress, percent, target;
-    Button sex;
+    Button sex, add;
 
     public GoalHolder(@NonNull View itemView) {
         super(itemView);
@@ -188,5 +199,8 @@ class GoalHolder extends RecyclerView.ViewHolder{
         percent = (TextView) itemView.findViewById(R.id.tvGoalsPercentSaved);
         target = (TextView) itemView.findViewById(R.id.tvGoalTargetVal);
         sex = (Button) itemView.findViewById(R.id.btnDeleteGoal);
+        add = (Button) itemView.findViewById(R.id.btnAddToGoal);
+
+
     }
 }

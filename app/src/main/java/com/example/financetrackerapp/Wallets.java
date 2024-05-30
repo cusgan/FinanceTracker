@@ -5,6 +5,7 @@ import static com.google.android.material.internal.ContextUtils.getActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -158,27 +159,13 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
         final int index = holder.getAdapterPosition();
         holder.tvname.setText(wallets.get(index).name+" ");
         holder.tvbal.setText("₱"+wallets.get(index).balance);
+        holder.tvshared.setText(" ");
 
         if(wallets.get(index).userid2 != 0){
-//            try (
-//                    Connection c = SQLInterface.getConnection(); /*automatically close()*/
-//                    PreparedStatement statement = c.prepareStatement(
-//                            "SELECT name FROM tbluser WHERE userid = ?;"
-//                    );
-//            ) {
-//                statement.setInt(1, UserData.userid);
-//
-//                ResultSet rs = statement.executeQuery();
-//                rs.next();
-//                holder.tvshared.setText("Shared with " + rs.getString(1));
-//
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-                holder.tvshared.setText("Shared Wallet");
+            holder.btnShare.setText("Shared Wallet");
+            holder.btnShare.setEnabled(false);
+            holder.btnShare.setBackgroundColor(Color.argb(1,0,70,0));
         }
-        else
-            holder.tvshared.setText(" ");
 
         holder.btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -216,7 +203,7 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
                     }
                 });
 // Set other dialog properties.
-                builder.setMessage("Are you sure you would like to delete "+UserData.wallets.get(index)+"? ")
+                builder.setMessage("Are you sure you would like to delete "+UserData.wallets.get(index).name+"? ")
                         .setTitle("Confirm Wallet Deletion");
 
 // Create the AlertDialog.

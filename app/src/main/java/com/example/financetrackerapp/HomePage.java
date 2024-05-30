@@ -102,7 +102,7 @@ public class HomePage extends Fragment {
         tvBudgetSpent.setText("₱" + String.format("%.2f", UserData.budgetSpent)+" spent");
         float percnt = -1;
         percnt = 100.0f*((float)UserData.budgetSpent/(float)UserData.monthlyBudget+0.1f);
-        if(Float.isNaN(percnt))
+        if(Float.isNaN(percnt) || Float.isInfinite(percnt))
             tvSpentPercent.setText("- - -");
         else
             tvSpentPercent.setText("("+ percnt +"%)");
@@ -167,15 +167,18 @@ public class HomePage extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        TextView tvBalance, tvIncome, tvExpenses, tvWelcome;
-        tvBalance = (TextView) getView().findViewById(R.id.tvTotalBalance);
-        tvIncome = (TextView) getView().findViewById(R.id.tvIncome);
-        tvExpenses = (TextView) getView().findViewById(R.id.tvExpenses);
-        tvWelcome = (TextView) getView().findViewById(R.id.tvWelcome);
+        tvWelcome.setText("Welcome, " + UserData.name);
+        tvBalance.setText("₱" + String.format("%.2f", UserData.totalBalance));
+        tvIncome.setText("₱" + String.format("%.2f", UserData.totalIncome));
+        tvExpenses.setText("₱" + String.format("%.2f", UserData.totalExpenses));
 
-        tvWelcome.setText("Welcome, "+UserData.name);
-        tvBalance.setText("₱"+UserData.totalBalance);
-        tvIncome.setText("₱"+UserData.totalIncome);
-        tvExpenses.setText("₱"+UserData.totalExpenses);
+        tvBudgetTotal.setText("₱" + String.format("%.2f", UserData.monthlyBudget));
+        tvBudgetSpent.setText("₱" + String.format("%.2f", UserData.budgetSpent)+" spent");
+        float percnt = -1;
+        percnt = 100.0f*((float)UserData.budgetSpent/(float)UserData.monthlyBudget+0.1f);
+        if(Float.isNaN(percnt) || Float.isInfinite(percnt))
+            tvSpentPercent.setText("- - -");
+        else
+            tvSpentPercent.setText("("+ percnt +"%)");
     }
 }
