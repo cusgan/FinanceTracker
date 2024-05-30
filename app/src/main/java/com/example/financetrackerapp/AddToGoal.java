@@ -46,7 +46,18 @@ public class AddToGoal extends AppCompatActivity {
 
                     Goal goal = UserData.goals.get(UserData.selectedGoal);
                     SQLInterface.transactGoal(goal.id,goal.name,walletid,amt,UserData.userid);
-                    goal.balance += amt;
+                    if(goal.balance<goal.amount){
+                        goal.balance += amt;
+                        if (goal.balance > goal.amount) {
+                            SQLInterface.sendNotif("Congratulations, you have finished goal: " + goal.name + " !", UserData.userid);
+                            Notif notif = new Notif();
+                            notif.text = "Congratulations, you have finished goal: " + goal.name + " !";
+                            notif.userid = UserData.userid;
+                            notif.id = (int) Math.round(Math.random() * 56754);
+                            UserData.notifs.add(notif);
+                            Notifications.na.notifyDataSetChanged();
+                        }
+                    }
                     Goals.ga.notifyDataSetChanged();
                     MainPage.makeToast("Successfully added funds to Goal");
                     finish();

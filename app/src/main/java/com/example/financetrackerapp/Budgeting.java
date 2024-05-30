@@ -89,7 +89,7 @@ public class Budgeting extends Fragment {
         tvs = new TextView[]{
                 food,house,transpo,util,health,savings,personal,misc
         };
-        total.setText("₱"+UserData.budget.total);
+        total.setText("₱"+String.format("%.2f",UserData.monthlyBudget));
         for(int i=0;i<8;i++){
                 tvs[i].setText("₱"+String.format("%.2f",UserData.budget.category[i]));
         }
@@ -110,9 +110,9 @@ public class Budgeting extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        total.setText("₱"+UserData.budget.total);
+        total.setText("₱"+String.format("%.2f",UserData.monthlyBudget));
         for(int i=0;i<8;i++){
-            tvs[i].setText("₱"+UserData.budget.category[i]);
+            tvs[i].setText("₱"+String.format("%.2f",UserData.budget.category[i]));
         }
     }
 }

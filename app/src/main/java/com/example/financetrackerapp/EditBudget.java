@@ -32,6 +32,7 @@ public class EditBudget extends AppCompatActivity {
         ets = new EditText[]{
                 food,house,transpo,util,health,savings,personal,misc
         };
+        total.setText(UserData.monthlyBudget+"");
         for(int i=0; i<8; i++){
             if(UserData.budget.category[i]>0)
                 ets[i].setText(""+UserData.budget.category[i]);
@@ -56,8 +57,9 @@ public class EditBudget extends AppCompatActivity {
                             throw new Exception("nonomax");
                         }
                     }
-                    UserData.budget.total = stotal;
+                    UserData.monthlyBudget = stotal;
                     UserData.budget.category = cats;
+                    SQLInterface.updateBudget(UserData.userid,UserData.monthlyBudget);
                     finish();
                 } catch (Exception e){
                     if(e.getMessage().matches("nonomax"))

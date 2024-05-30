@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -484,6 +485,40 @@ public class SQLInterface {
                 statement.execute(""+
                         "UPDATE tblwallet SET isdeleted = 1 WHERE walletid="+walletid+";"
                 );
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+    }
+    public static void updateBudget(int userid, float budget){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                Statement statement = c.createStatement();
+                statement.execute(""+
+                        "UPDATE tbluser SET budget = "+budget+" WHERE userid="+userid+";"
+                );
+            } catch(SQLException e){
+                e.printStackTrace();
+            }
+        });
+        try { executor.awaitTermination(TIMEOUT, TimeUnit.MILLISECONDS);
+        } catch (InterruptedException e) { e.printStackTrace();}
+    }
+    public static void sendNotif(String text, int userid){
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.execute(()->{
+            try(Connection c = getConnection()){
+                PreparedStatement statement = c.prepareStatement(""+
+                                "INSERT INTO " +
+                                "tblnotif (text, userid)" +
+                                "values (?,?)"
+                        );
+                statement.setString(1,text);
+                statement.setInt(2,userid);
+            statement.execute();
             } catch(SQLException e){
                 e.printStackTrace();
             }

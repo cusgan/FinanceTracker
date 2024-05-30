@@ -3,11 +3,13 @@ package com.example.financetrackerapp;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -107,10 +109,18 @@ class TransAdapter extends RecyclerView.Adapter<TransHolder>{
     public void onBindViewHolder(@NonNull TransHolder holder, int position) {
         final int index = holder.getAdapterPosition();
         Transaction transaction = UserData.transactions.get(index);
-        holder.amountDisplay.setText(String.format("%.2f",transaction.amount));
+        String amountpeso = "₱"+String.format("%.2f",Math.abs(transaction.amount));
+        if(transaction.amount<0) {
+            amountpeso = "-" + amountpeso;
+            holder.amountDisplay.setTextColor(Color.parseColor("#F44336"));
+        } else {
+            amountpeso = "+" + amountpeso;
+            holder.amountDisplay.setTextColor(Color.parseColor("#57C478"));
+        }
+        holder.amountDisplay.setText(amountpeso);
         holder.walletDisplay.setText("- - -");
         if(UserData.getWallet(transaction.walletid) !=null)
-        holder.walletDisplay.setText(UserData.getWallet(transaction.walletid).name);
+            holder.walletDisplay.setText(UserData.getWallet(transaction.walletid).name);
         holder.descDisplay.setText(""+transaction.description);
         holder.deetsDisplay.setText(""+transaction.category + " - "+transaction.datetime.toString());
     }

@@ -145,6 +145,7 @@ class NotifAdapter extends RecyclerView.Adapter<NotifHolder>{
             @Override
             public void onClick(View v) {
                 SQLInterface.deleteNotif(notifID);
+                UserData.notifs.remove(index);
                 SQLInterface.getUserData(UserData.userid);
                 Notifications.na.notifyDataSetChanged();
                 Notifications n = Notifications.newInstance(null,null);

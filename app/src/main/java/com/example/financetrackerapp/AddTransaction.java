@@ -42,7 +42,12 @@ public class AddTransaction extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    String desc = etNTDesc.getText().toString();
+                    String desc;
+                    try{
+                        desc = etNTDesc.getText().toString();
+                    } catch (Exception e) {
+                        desc = "Transaction";
+                    }
                     float amount = Float.parseFloat(etNTAmount.getText().toString());
                     if(!rbIncome.isChecked()) amount *= -1;
                     String category = categorySpinner.getSelectedItem().toString();

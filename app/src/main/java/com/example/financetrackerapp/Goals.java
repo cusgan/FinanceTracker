@@ -137,6 +137,7 @@ class GoalAdapter extends RecyclerView.Adapter<GoalHolder>{
         if(holder.tname!=null) holder.tname.setText(goal.name);
         holder.progress.setText("₱"+String.format("%.2f",goal.balance));
         int percent = (int)Math.round(100.0*(goal.balance/goal.amount));
+        if(percent >= 100) percent = 100;
         holder.percent.setText(percent+"% reached");
         holder.target.setText("out of ₱"+String.format("%.2f",goal.amount));
         holder.add.setOnClickListener(new View.OnClickListener() {
