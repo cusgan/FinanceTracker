@@ -91,14 +91,15 @@ tools:context=".TransactionHistory">
                         android:textColor="@color/white"
                         android:textSize="34sp" />
 
-                    <TextView
-                        android:id="@+id/tvWalletCount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/inter_medium"
-                        android:text="from 1 wallet" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvWalletCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:fontFamily="@font/inter_medium"
+                    android:text="from 1 wallet" />
 
             </LinearLayout>
 

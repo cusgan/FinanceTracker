@@ -27,8 +27,11 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 try{
                     String email = etEmail.getText().toString();
+                    if(email.length()<1) throw new Exception("Invalid input");
                     String pass = etPass.getText().toString();
+                    if(pass.length()<1) throw new Exception("Invalid input");
                     String name = etName.getText().toString();
+                    if(name.length()<1) throw new Exception("Invalid input");
                     if(SQLInterface.signupAccount(email,pass,name)){
                         toast("Successfully Registered!");
                         finish();
@@ -38,6 +41,7 @@ public class SignUp extends AppCompatActivity {
 
                 } catch(Exception e){
                     e.printStackTrace();
+                    if(e.getMessage().matches("Invalid input")) toast(e.getMessage());
                     toast("Could not Register!");
                 }
             }

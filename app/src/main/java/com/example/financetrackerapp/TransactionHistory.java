@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -117,12 +119,13 @@ class TransAdapter extends RecyclerView.Adapter<TransHolder>{
             amountpeso = "+" + amountpeso;
             holder.amountDisplay.setTextColor(Color.parseColor("#57C478"));
         }
+        DateFormat df = new SimpleDateFormat("MMM dd, yyyy h:mm a");
         holder.amountDisplay.setText(amountpeso);
         holder.walletDisplay.setText("- - -");
         if(UserData.getWallet(transaction.walletid) !=null)
             holder.walletDisplay.setText(UserData.getWallet(transaction.walletid).name);
         holder.descDisplay.setText(""+transaction.description);
-        holder.deetsDisplay.setText(""+transaction.category + " - "+transaction.datetime.toString());
+        holder.deetsDisplay.setText(""+transaction.category + " - "+df.format(transaction.datetime));
     }
 
     @Override

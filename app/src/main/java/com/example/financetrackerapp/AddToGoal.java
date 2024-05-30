@@ -8,10 +8,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class AddToGoal extends AppCompatActivity {
     Button confirmAdd, cancel;
     EditText amount;
+    TextView title;
     Spinner spinner;
 
     @Override
@@ -22,7 +24,9 @@ public class AddToGoal extends AppCompatActivity {
         confirmAdd = (Button) findViewById(R.id.btnConfirmAddToGoal);
         cancel = (Button) findViewById(R.id.btnCancelAddToGoal);
         amount = findViewById(R.id.txtGoalAmountAdd);
+        title = findViewById(R.id.tvAddToGoalName);
 
+        title.setText("Add to "+UserData.goals.get(UserData.selectedGoal).name);
         spinner = findViewById(R.id.spnGoalWallet);
         String[] arraySpinner = new String[UserData.wallets.size()];
         for(int i=0;i<UserData.wallets.size(); i++){
@@ -58,6 +62,8 @@ public class AddToGoal extends AppCompatActivity {
                             Notifications.na.notifyDataSetChanged();
                         }
                     }
+                    UserData.getWallet(walletid).balance -= amt;
+                    Wallets.wa.notifyDataSetChanged();
                     Goals.ga.notifyDataSetChanged();
                     MainPage.makeToast("Successfully added funds to Goal");
                     finish();
@@ -79,5 +85,12 @@ public class AddToGoal extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        title.setText("Add to "+UserData.goals.get(UserData.selectedGoal).name);
     }
 }

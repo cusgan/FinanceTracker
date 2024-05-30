@@ -16,11 +16,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class SQLInterface {
-    public static final String IP = "10.0.2.2";
+    public static String IP = "172.20.10.11";
     public static final String URL = "jdbc:mysql://"+IP+":3306/dbspendsmart";
-    public static final String USERNAME = "root";
-    public static final String PASSWORD = "";
-    private static final long TIMEOUT = 120;
+    public static final String USERNAME = "test";
+    public static final String PASSWORD = "123";
+    private static final long TIMEOUT = 1000;
 
     static Connection getConnection() {
         Connection c = null;
@@ -29,6 +29,7 @@ public class SQLInterface {
             c = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             System.out.println("DB Connection Success!");
         } catch (SQLException | ClassNotFoundException e) {
+            MainPage.makeToast("Could not Connect to DATABASE");
             e.printStackTrace();
         }
         return c;
@@ -121,6 +122,8 @@ public class SQLInterface {
                         "tblaccount (email, password)" +
                         "values ('"+email+"','"+password.hashCode()+"')"
                 ,Statement.RETURN_GENERATED_KEYS);
+
+                success.set(true);
                 int accid = -1;
                 ResultSet generatedKeys = statement.getGeneratedKeys();
                 if(generatedKeys.next())
@@ -134,6 +137,8 @@ public class SQLInterface {
                         "tbluser (accid, name)" +
                         "values ("+accid+",'"+name+"')"
                 ,Statement.RETURN_GENERATED_KEYS);
+
+                success.set(true);
                 Statement statement3 = c.createStatement();
                 generatedKeys = statement2.getGeneratedKeys();
                 int userid = -1;

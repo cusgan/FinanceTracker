@@ -123,7 +123,7 @@ public class Wallets extends Fragment {
         super.onResume();
         tvTotal = (TextView) getView().findViewById(R.id.tvWalletTotalBal);
         tvWalletCount = (TextView) getView().findViewById(R.id.tvWalletCount);
-        tvTotal.setText("₱"+UserData.totalBalance);
+        tvTotal.setText("₱"+String.format("%.2f",UserData.totalBalance));
         String s = "";
         if(UserData.wallets.size()>1) s="s";
         tvWalletCount.setText("from "+UserData.wallets.size()+ " wallet"+s);
@@ -158,8 +158,8 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
     public void onBindViewHolder(@NonNull WalletHolder holder, int position) {
         final int index = holder.getAdapterPosition();
         holder.tvname.setText(wallets.get(index).name+" ");
-        holder.tvbal.setText("₱"+wallets.get(index).balance);
-        holder.tvshared.setText(" ");
+        holder.tvbal.setText("₱"+String.format("%.2f",wallets.get(index).balance));
+//        holder.tvshared.setText(" ");
 
         if(wallets.get(index).userid2 != 0){
             holder.btnShare.setText("Shared Wallet");
@@ -219,7 +219,7 @@ class WalletAdapter extends RecyclerView.Adapter<WalletHolder>{
     }
 }
 class WalletHolder extends RecyclerView.ViewHolder {
-    TextView tvname, tvbal,tvshared;
+    TextView tvname, tvbal;
     View view;
     Button btnShare, btnDelete;
 
@@ -227,7 +227,7 @@ class WalletHolder extends RecyclerView.ViewHolder {
         super(itemView);
         tvname = (TextView)itemView.findViewById(R.id.tvWalletName);
         tvbal = (TextView) itemView.findViewById(R.id.tvWalletBal);
-        tvshared=(TextView) itemView.findViewById(R.id.tvWalletShared);
+//        tvshared=(TextView) itemView.findViewById(R.id.tvWalletShared);
         btnShare = (Button) itemView.findViewById(R.id.btnShareWallet);
         btnDelete = (Button) itemView.findViewById(R.id.btnDeleteWallet);
     }

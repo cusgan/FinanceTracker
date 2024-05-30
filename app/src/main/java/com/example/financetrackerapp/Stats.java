@@ -112,8 +112,8 @@ public class Stats extends Fragment {
                         try {
                             String strStart = startDate.getText().toString().replace('/','-'),
                                     strEnd = endDate.getText().toString().replace('/','-');
-                             start = Timestamp.valueOf(strStart.concat(" 09:01:15"));
-                             end = Timestamp.valueOf(strEnd.concat(" 00:00:00"));
+                             start = Timestamp.valueOf(strStart.concat(" 00:00:00"));
+                             end = Timestamp.valueOf(strEnd.concat(" 23:59:59"));
                         } catch (Exception e) {
                             MainPage.makeToast("Could not retrieve statistics");
                         }
@@ -133,8 +133,10 @@ public class Stats extends Fragment {
 
                             ResultSet rs = statement.executeQuery();
                             rs.next();
-                            BigDecimal netbalance = rs.getBigDecimal(1);
+                            BigDecimal netbalance;
                             //netBal.setText("₱" + String.format("%.2f", netbalance));
+                            if(rs.getBigDecimal(1) != null) netbalance = rs.getBigDecimal(1);
+                            else netbalance = BigDecimal.valueOf(0);
                             Stats.texts[1] = "₱" + String.format("%.2f", netbalance);
 
 
@@ -262,7 +264,8 @@ public class Stats extends Fragment {
 
                             ResultSet rs = statement.executeQuery();
                             rs.next();
-                            Stats.texts[8] = rs.getString(1);
+                            if (rs.getString(1) != null || rs.getString(1).length() > 0) Stats.texts[8] = rs.getString(1);
+                            else Stats.texts[8] = "None";
                             //totalExpense.setText("₱" + String.format("%.2f", totalexp));
 
                         } catch (Exception e) {

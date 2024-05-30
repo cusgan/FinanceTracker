@@ -69,7 +69,6 @@
                     android:inputType="text"
                     android:textColor="@color/black"
                     android:textColorHighlight="@color/vivid_yellow"
-                    android:textColorHint="@color/black"
                     android:textColorLink="@color/vivid_yellow" />
 
                 <Space

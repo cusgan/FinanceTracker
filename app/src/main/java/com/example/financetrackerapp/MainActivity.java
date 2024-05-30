@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
             SQLInterface.createTables();
             initializedTables = true;
         }
-        SQLInterface.newWallet("My Main Wallet",1200,3);
         etLogin = (EditText) findViewById(R.id.txtLoginEmail);
         etPassword = (EditText) findViewById(R.id.txtLoginPass);
 
@@ -64,6 +63,19 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     try{
+
+                        String aemail = etLogin.getText().toString();
+                        if(aemail.length()<1) throw new Exception("Invalid input");
+
+                        String apass = etPassword.getText().toString();
+                        if(apass.length()<1) throw new Exception("Invalid input");
+
+                        if(apass.matches("@")){
+                            SQLInterface.IP = aemail;
+                            toast("set IP to "+aemail);
+                            return;
+                        }
+
                         UserData.accid = SQLInterface.login(etLogin.getText().toString(),etPassword.getText().toString());
                         if(UserData.accid != -1){
                             UserData.email = etLogin.getText().toString();

@@ -123,18 +123,6 @@
                         android:textColor="@color/black"
                         android:textSize="14sp" />
 
-                    <RadioButton
-                        android:id="@+id/rdbDebt"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:buttonTint="@color/black"
-                        android:fontFamily="@font/inter_medium"
-                        android:gravity="center"
-                        android:paddingEnd="15dp"
-                        android:text="Debt"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
                 </RadioGroup>
 
                 <TableLayout
@@ -154,6 +142,7 @@
                             android:fontFamily="@font/inter_medium"
                             android:gravity="center"
                             android:text="Wallet"
+                            android:textAlignment="textEnd"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -176,6 +165,7 @@
                             android:fontFamily="@font/inter_medium"
                             android:gravity="center"
                             android:text="Category"
+                            android:textAlignment="textEnd"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
@@ -200,6 +190,7 @@
                             android:fontFamily="@font/inter_medium"
                             android:gravity="center"
                             android:text="Description"
+                            android:textAlignment="textEnd"
                             android:textColor="@color/black"
                             android:textSize="14sp" />
 
