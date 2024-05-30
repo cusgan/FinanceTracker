@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +15,18 @@ public class MainActivity extends AppCompatActivity {
     EditText etLogin, etPassword;
 
     private static boolean initializedTables;
+
+    private void clearForm(LinearLayout group) {
+        for (int i = 0, count = group.getChildCount(); i < count; ++i) {
+            View view = group.getChildAt(i);
+            if (view instanceof EditText) {
+                ((EditText)view).setText("");
+            }
+
+            if(view instanceof LinearLayout && (((LinearLayout)view).getChildCount() > 0))
+                clearForm((LinearLayout)view);
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                                     MainPage.class
                             );
                             startActivity(intent);
+                            etLogin.setText("");
+                            etPassword.setText("");
                         } else {
                             toast("Could not login.");
                         }
