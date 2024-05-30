@@ -76,7 +76,7 @@
                         android:inputType="numberDecimal"
                         android:textColor="@color/mustard_yellow"
                         android:textColorHighlight="@color/white"
-                        android:textColorHint="@color/mustard_yellow"
+                        android:textColorHint="#FFDE85"
                         android:textColorLink="@color/white"
                         android:textSize="34sp" />
 
@@ -96,6 +96,7 @@
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:gravity="center"
+                    android:checkedButton="@+id/rdbExpense"
                     android:orientation="horizontal">
 
                     <RadioButton
@@ -213,7 +214,6 @@
                             android:inputType="text"
                             android:textColor="@color/black"
                             android:textColorHighlight="@color/mustard_yellow"
-                            android:textColorHint="@color/black"
                             android:textColorLink="@color/mustard_yellow"
                             android:textSize="14sp" />
                     </TableRow>

@@ -29,7 +29,7 @@ public class HomePage extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     TextView tvBalance, tvIncome, tvExpenses, tvWelcome, tvBudgetTotal, tvBudgetSpent, tvSpentPercent;
-    ImageButton btnNotifs;
+    ImageButton btnNotifs, btnLogout;
     Button btnWallets, btnGoals, btnBudget, btnStats;
 
     // TODO: Rename and change types of parameters
@@ -115,6 +115,14 @@ public class HomePage extends Fragment {
                         .beginTransaction()
                         .replace(R.id.frameMainPage, Notifications.class, null)
                         .addToBackStack(null).commit();
+            }
+        });
+
+        btnLogout = (ImageButton) getView().findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
             }
         });
 

@@ -37,7 +37,7 @@
 
                     <TextView
                         android:id="@+id/tvWelcome"
-                        android:layout_width="294dp"
+                        android:layout_width="252dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_bold"
                         android:text="Welcome, user"
@@ -53,6 +53,14 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp"
                         android:src="@drawable/baseline_notifications_24" />
+
+                    <ImageButton
+                        android:id="@+id/btnLogout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/deep_green"
+                        android:src="@drawable/baseline_logout_24" />
 
                 </LinearLayout>
 

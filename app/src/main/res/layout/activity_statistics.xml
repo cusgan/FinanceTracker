@@ -87,6 +87,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_weight="1"
+                            android:backgroundTint="@color/emerald"
                             android:insetTop="0dp"
                             android:insetBottom="0dp"
                             android:text="PRO"
